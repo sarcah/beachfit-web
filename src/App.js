@@ -6,7 +6,7 @@ import restProvider from 'ra-data-simple-rest';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import SignInForm from './components/SignInForm';
 import { signIn, getToken } from "./api/auth";
-import Home from "./components/Home";
+import Home from "./front/Home";
 
 function About() {
   return <h2>About</h2>;
@@ -23,22 +23,26 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <Redirect to="/home" />
-        <div>
-          <nav>
-            <ul>
-              <li>
-                <Link to="/home">Home</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-              <li>
-                <Link to="/admin">Admin</Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
+      
+      
+      {
+        !signedIn ?
+          (<div>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/home">Home</Link>
+                </li>
+                <li>
+                  <Link to="/about">About</Link>
+                </li>
+                <li>
+                  <Link to="/admin">Admin</Link>
+                </li>
+              </ul>
+            </nav>
+          </div>) : null
+        }
 
         <Switch>
           <Route path="/home">
@@ -47,7 +51,7 @@ function App() {
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/admin" render={() => (!signedIn ? (
+          <Route path="/admin" render={() => (signedIn ? (
             <Admin dataProvider={restProvider(`${API_URL}`)}>
               <Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} icon={PostIcon} />
             </Admin>
