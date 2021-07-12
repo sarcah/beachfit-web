@@ -1,5 +1,10 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .App-logo {
@@ -35,4 +40,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.container-admin-sidebar {
+  display: flex;
+  margin-top: 20px;
+}
+
+.others {
+  flex: 4;
+  background-color: darkcyan;
 }
