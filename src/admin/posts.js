@@ -8,9 +8,7 @@ export const PostList = (props) => (
 		<Datagrid>
 			<TextField source="id" />
 			<TextField source="title" />
-			<DateField source="published_at" />
-			<TextField source="average_note" />
-			<TextField source="views" />
+			<DateField source="created_at" />
 			<EditButton basePath="/posts" />
 		</Datagrid>
 	</List>
@@ -28,23 +26,22 @@ export const PostEdit = (props) => (
 	<Edit title={<PostTitle />} {...props}>
 		<SimpleForm>
 			<TextInput disabled source="id" />
-			<TextInput source="teaser" options={{ multiline: true }} />
+			<TextInput source="title" options={{ multiline: true }} />
 			<TextInput multiline source="body" />
-			<DateInput label="Publication Date" source="published_at" />
-			<TextInput source="average_note" />
-			<TextInput disabled label="Nb views" source="views" />
+			<DateInput label="Publication Date" source="created_at" />
+			{/* <TextInput disabled label="Nb views" source="views" /> */}
 		</SimpleForm>
 	</Edit>
 );
 
 export const PostCreate = (props) => (
-	<Create title="Create A Post" {...props}>
+	<Create title="Create A Blog Post" {...props}>
 		<SimpleForm>
 			<TextInput source="title" />
-			<TextInput source="teaser" options={{ multiline: true }} />
+			{/* <TextInput source="teaser" options={{ multiline: true }} /> */}
 			<TextInput multiline source="body" />
-			<TextInput label="Publication Date" source="published_at" />
-			<TextInput source="average_note" />
+			{/* <TextInput label="Publication Date" source="created_at" /> */}
+			{/* <TextInput source="average_note" /> */}
 		</SimpleForm>
 	</Create>
 );
