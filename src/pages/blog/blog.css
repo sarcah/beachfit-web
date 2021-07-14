@@ -1,15 +1,15 @@
-.user {
+.blog {
   flex: 4;
   padding: 20px;
 }
 
-.userTitleContainer {
+.blogTitleContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.userTitle {
+.blogTitle {
   display: block;
   font-size: 2em;
   margin-top: 0.67em;
@@ -19,7 +19,7 @@
   font-weight: bold;
 }
 
-.userAddButton {
+.blogAddButton {
   width: 80px;
   border: none;
   padding: 5px;
@@ -30,19 +30,19 @@
   font-size: 16px;
 }
 
-.userContainer {
+.blogContainer {
   display: flex;
   margin-top: 20px;
 }
 
-.userShow {
+.blogShow {
   flex: 1;
   padding: 20px;
   -webkit-box-shadow: 9px 9px 29px -7px #000000;
   box-shadow: 9px 9px 29px -7px #000000;
 }
 
-.userUpdate {
+.blogUpdate {
   flex: 2;
   padding: 20px;
   -webkit-box-shadow: 9px 9px 29px -7px #000000;
@@ -50,12 +50,12 @@
   margin-left: 20px;
 }
 
-.userShowTop {
+.blogShowTop {
   display: flex;
   align-items: center;
 }
 
-.userShowImg {
+.blogShowImg {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -63,45 +63,45 @@
   margin-right: 20px;
 }
 
-.userShowTopTitle {
+.blogShowTopTitle {
   display: flex;
   flex-direction: column;
 }
 
-.userShowUsername {
+.blogShowblogname {
   font-weight: 600;
 }
 
-.userShowUserTitle {
+.blogShowblogTitle {
   font-weight: 300;
 }
 
-.userShowBottom {
+.blogShowBottom {
   margin: 12px 20px;
 }
 
-.userShowTitle {
+.blogShowTitle {
   font-size: 14px;
   font-weight: 600;
   color: rgb(158, 158, 158);
 }
 
-.userShowInfo {
+.blogShowInfo {
   display: flex;
   align-items: center;
   margin: 20px 0;
   color: #444;
 }
 
-.userShowIcon {
+.blogShowIcon {
   font-style: 16px;
 }
 
-.userShowInfoTitle {
+.blogShowInfoTitle {
   margin-left: 10px;
 }
 
-.userUpdateImage {
+.blogUpdateImage {
   width: 100px;
   height: 100px;
   border-radius: 10px;
@@ -109,50 +109,50 @@
   margin-right: 20px;
 }
 
-.userUpdateForm {
+.blogUpdateForm {
   display: flex;
   justify-content: space-between;
   margin: 20px;
 }
 
-.userUpdateTitle {
+.blogUpdateTitle {
   font-size: 24px;
   font-weight: 600;
 }
 
-.userUpdateItem {
+.blogUpdateItem {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
 }
 
-.userUpdateItem > label {
+.blogUpdateItem > label {
   margin-bottom: 5px;
   font-size: 14px;
 }
 
-.userUpdateInput {
+.blogUpdateInput {
   border: none;
   width: 250px;
   border-bottom: 1px solid gray;
   height: 30px;
 }
 
-.userUpdateRight {
+.blogUpdateRight {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.userUpdateUpload {
+.blogUpdateUpload {
   display: flex;
 }
 
-.userUpdateIcon {
+.blogUpdateIcon {
   cursor: pointer;
 }
 
-.userUpdateButton {
+.blogUpdateButton {
   border-radius: 5px;
   border: none;
   padding: 5px;

@@ -1,8 +1,8 @@
-.newUser {
+.newBlog {
 	flex: 4;
 }
 
-.newUserTitle {
+.newBlogTitle {
 	display: block;
 	font-size: 2em;
 	margin-top: 0.67em;
@@ -12,14 +12,14 @@
 	font-weight: bold;
 }
 
-.newUserForm {
+.newBlogForm {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column;
 	align-items: center;
 }
 
-.newUserItem {
+.newBlogItem {
 	width: 400px;
 	display: flex;
 	flex-direction: column;
@@ -27,14 +27,14 @@
 	margin-right: 20px;
 }
 
-.newUserItem > label {
+.newBlogItem > label {
 	margin-bottom: 10px;
 	font-size: 14px;
 	font-weight: 600;
 	color: gray;
 }
 
-.newUserItem > input {
+.newBlogItem > input {
 	max-width: 100%;
 	height: 20px;
 	padding: 20px;
@@ -42,7 +42,7 @@
 	border-radius: 5px;
 }
 
-.newUserButton {
+.newBlogButton {
 	width: 200px;
 	border: none;
 	background-color: darkred;
