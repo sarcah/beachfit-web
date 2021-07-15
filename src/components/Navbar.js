@@ -1,62 +1,30 @@
 import React from "react";
-import styled from "styled-components";
-
-
-// const Nav = styled.nav`
-//   width: 100%;
-//   height: 55px;
-//   border-bottom: 2px solid #f1f1f1;
-//   padding: 0 20px;
-//   display: flex;
-//   justify-content: space-between;
-//   .logo {
-//     padding: 15px 0;
-//   }
-//   .navlinks {
-// 	  list-style: none;
-// 	  display: inherit;
-// 	  flex-flow: row nowrap;
-// 	  li {
-// 		  padding: 18px 10px;
-// 	  }
-//   }
-
-//   @media (max:width: 768px) {
-// 	  ul {
-// 		flex-flow: column nowrap;
-// 		position: fixed;
-// 		top: 0;
-// 		right: 0;
-// 		height: 100vh;
-// 		width: 300px;
-// 		padding-top: 3.5rem;
-// 	  }
-// 	  li {
-// 		  color: #fff;
-// 	  }
-//   }
-// `;
-
+import { Link } from 'react-router-dom';
+import "./navbar.css";
 
 const Navbar = () => {
+
+  const handleCheckbox = () => {
+    document.getElementById("burgerLabel").classList.toggle("open");
+    document.getElementById("menu").classList.toggle("open");
+  }
+
   return (
-    <nav className="font-sen text-white uppercase text-lg lg:flex items-center hidden">
-      {/*<ul className="navlinks">
-         <li><a href="#" className="">Home</a></li>
-        <li><a href="#" className="">Services</a></li>
-        <li><a href="#" className="py-2 px-6 flex">About</a></li>
-        <li><a href="#" className="py-2 px-6 flex">Contact</a></li>
-        <li><a href="#" className="py-2 px-6 flex">FAQ</a></li> 
-
-		
-  </ul>}*/}
-
-	  	<a href="#" className="">Home</a>
-        <a href="#" className="">Services</a>
-        <a href="#" className="py-2 px-6 flex">About</a>
-        <a href="#" className="py-2 px-6 flex">Contact</a>
-        <a href="#" className="py-2 px-6 flex">FAQ</a>
-    </nav>
+    <div className="flex items-center">
+        <input type="checkbox" onChange={handleCheckbox} className="hidden" id="burgerMenu" />
+        <ul id="menu" className="font-sen text-white uppercase text-lg lg:flex items-center hidden">
+          <Link to="/" className="menuLink py-2 px-6 flex hover:underline">Home</Link>
+          <Link to="/" className="menuLink py-2 px-6 flex hover:underline">Services</Link>
+          <Link to="/about" className="menuLink py-2 px-6 flex hover:underline">About</Link>
+          <Link to="/" className="menuLink py-2 px-6 flex hover:underline">Contact</Link>
+          <Link to="/faq" className="menuLink py-2 px-6 flex hover:underline">FAQ</Link>
+        </ul>
+        <label id="burgerLabel" htmlFor="burgerMenu" className="lg:hidden flex flex-col ml-4">
+          <span className="burger w-6 h-1 bg-white mb-1" />
+          <span className="burger w-6 h-1 bg-white mb-1" />
+          <span className="burger w-6 h-1 bg-white mb-1" />
+        </label>
+    </div>
   );
 };
 

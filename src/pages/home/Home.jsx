@@ -9,16 +9,13 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-ro
 
 export default function Home() {
 	return (
-		
 		<div className="home">
-			
 			<FeaturedInfo />
 			<Chart data={userData} title="User Analytics" grid dataKey="ActiveUser" />
 			<div className="homeWidgets">
 				<WidgetSm />
 				<WidgetLg />
 			</div>
-
 		</div>
 	)
 }

@@ -11,9 +11,9 @@ import SignInForm from './components/SignInForm';
 import { signIn, getToken } from "./api/auth";
 import Home from "./front/Home";
 import AdminHome from "./pages/home/Home";
-import UserList from './pages/userList/UserList';
-import User from './pages/user/User';
-import NewUser from './pages/newUser/NewUser';
+import BlogList from './pages/blogList/BlogList';
+import Blog from './pages/blog/Blog';
+import NewBlog from './pages/newBlog/NewBlog';
 import NewProduct from './pages/newProduct/NewProduct';
 import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
@@ -63,9 +63,9 @@ function App() {
                 <Sidebar />
                 <Switch>
                   <Route exact path="/admin"><AdminHome /></Route>
-                  <Route exact path="/admin/users"><UserList /></Route>
-                  <Route exact path="/admin/users/new"><NewUser /></Route>
-                  <Route exact path="/admin/users/:userId"><User /></Route>
+                  <Route exact path="/admin/blogs"><BlogList /></Route>
+                  <Route exact path="/admin/blogs/1/posts/new"><NewBlog /></Route>
+                  <Route exact path="/admin/blogs/1/posts/:id" render={(props) => <Blog id={props.match.params.id} />} />
                   <Route exact path="/admin/products"><ProductList /></Route>
                   <Route exact path="/admin/products/new"><NewProduct /></Route>
                   <Route exact path="/admin/products/:productId"><Product /></Route>
