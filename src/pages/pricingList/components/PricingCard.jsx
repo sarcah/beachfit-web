@@ -1,27 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import "./pricingcard.css";
 import { DeleteOutline } from '@material-ui/icons';
-import axios from "axios";
 
 
 export default function PricingCard({ type, data, editMode, onUpdate, onDelete }) {
-	const API_URL = process.env.REACT_APP_API_URL;
 
 	const [edit, setEdit] = useState(editMode);
-	const [value, setValue] = useState({ ...data });
+	const [value, setValue] = useState({...data});
 
 	let card = (<></>);
 
-	
-
 	const handleEdit = (event) => {
+		console.log("handle edit ", event)
 		event.preventDefault();
 		setEdit(!edit);
 	}
 
 	const handleChange = (event) => {
+		const { name, value } = event.target;
+		const stateObject = {...data, [name]:value};
 		event.preventDefault();
-		setValue(event.target.value);
+		setValue(stateObject);
 	}
 
 	const handleSubmit = (event) => {
@@ -29,10 +28,6 @@ export default function PricingCard({ type, data, editMode, onUpdate, onDelete }
 		setEdit(!edit)
 		onUpdate(event.target);
 	}
-
-	useEffect(() => {
-		// console.log(value);
-	}, [edit, value])
 
 	switch (type) {
 		case "plans":
@@ -45,7 +40,7 @@ export default function PricingCard({ type, data, editMode, onUpdate, onDelete }
 							}
 						</span>
 						<div className="flex justify-end items-end">
-							<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleEdit}>{edit ? "Cancel" : "Edit"}</button>
+							<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(event)=>{handleEdit(event)}}>{edit ? "Cancel" : "Edit"}</button>
 							<DeleteOutline className="userListDelete" style={{ fontSize: 40 }} onClick={onDelete} />
 						</div>
 					</div>

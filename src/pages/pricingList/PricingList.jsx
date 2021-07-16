@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import "./pricingList.css";
 import axios from 'axios';
 import PricingCard from './components/PricingCard';
 import NewPricingCard from './components/NewPricingCard';
 
-
 export default function PricingList() {
 	const API_URL = process.env.REACT_APP_API_URL;
-	const [plans, setPlans] = useState([]);
-	const [passes, setPasses] = useState([]);
+	const [plans, setPlans] = useState({});
+	const [passes, setPasses] = useState({});
 	const [newPlan, setNewPlan] = useState(false);
 	const [newPass, setNewPass] = useState(false);
 	const [update, setUpdate] = useState(false);
 
 
 	const handleDelete = (endpoint, id) => {
-		setPlans(plans.filter(item => item.id !== id)) //Change this to a fetch later
+		setPlans(plans.filter(item => item.id !== id))
 		axios.delete(`${API_URL}/pricings/1/${endpoint}/${id}`)
 			.then(response => console.log(response.data));
 	}
@@ -39,7 +38,7 @@ export default function PricingList() {
 
 	useEffect(() => {
 		axios.get(`${API_URL}/pricings/1/plans`)
-			.then(response => { setPlans(response.data) }).catch();
+			.then(response => { setPlans(()=>response.data) }).catch();
 	}, [newPlan, update])
 
 	useEffect(() => {
@@ -49,7 +48,7 @@ export default function PricingList() {
 
 	return (
 		<div>
-			<button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => setNewPlan(true)}>Create</button>
+			<button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => {setNewPlan(true)}}>Create</button>
 			<div className="flex flex-row flex-wrap">
 			{
 				(plans.length > 0) ? <>{
@@ -57,7 +56,7 @@ export default function PricingList() {
 					}</> : <>You have no Plans.</>
 			}
 			{
-				newPlan ? <NewPricingCard type="plans" onCreate={()=>setNewPlan(false)} onCancel={()=>setNewPlan(false)} /> : <></>
+				newPlan ? <NewPricingCard type="plans" onCreate={()=>{setNewPlan(false)}} onCancel={()=>{setNewPlan(false)}} /> : <></>
 			}
 			</div>
 		</div>
