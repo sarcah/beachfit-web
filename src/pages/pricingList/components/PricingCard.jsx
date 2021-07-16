@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import "./pricingcard.css";
 import { DeleteOutline } from '@material-ui/icons';
-import axios from "axios";
 
 
-export default function PricingCard({ type, data, editMode, onUpdate, onDelete }) {
-	const API_URL = process.env.REACT_APP_API_URL;
+export default function PricingCard({ type, data, onUpdate, onDelete }) {
 
-	const [edit, setEdit] = useState(editMode);
-	const [value, setValue] = useState({ ...data });
+	const [edit, setEdit] = useState(false);
+	const [formData, setFormData] = useState({...data});
 
 	let card = (<></>);
-
-	
 
 	const handleEdit = (event) => {
 		event.preventDefault();
@@ -20,8 +16,9 @@ export default function PricingCard({ type, data, editMode, onUpdate, onDelete }
 	}
 
 	const handleChange = (event) => {
-		event.preventDefault();
-		setValue(event.target.value);
+		const { name, value } = event.target;
+		const stateObject = {...formData, [name]:value};
+		setFormData(stateObject);
 	}
 
 	const handleSubmit = (event) => {
@@ -30,38 +27,34 @@ export default function PricingCard({ type, data, editMode, onUpdate, onDelete }
 		onUpdate(event.target);
 	}
 
-	useEffect(() => {
-		// console.log(value);
-	}, [edit, value])
-
 	switch (type) {
 		case "plans":
 			card = (
 				<form onSubmit={(event) => { handleSubmit(event) }} className="featuredItem">
 					<div className="flex justify-between">
-						<input type="hidden" name="id" value={value.id} />
+						<input type="hidden" name="id" value={formData.id} />
 						<span className="featuredTitle">
-							{edit ? <input name="name" style={{ width: "70%" }} type="text" value={value.name} onChange={handleChange} /> : <>{data.name}</>
+							{edit ? <input name="name" style={{ width: "70%" }} type="text" value={formData.name} onChange={handleChange} /> : <>{data.name}</>
 							}
 						</span>
 						<div className="flex justify-end items-end">
-							<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleEdit}>{edit ? "Cancel" : "Edit"}</button>
+							<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(event)=>{handleEdit(event)}}>{edit ? "Cancel" : "Edit"}</button>
 							<DeleteOutline className="userListDelete" style={{ fontSize: 40 }} onClick={onDelete} />
 						</div>
 					</div>
 					<div className="featuredMoneyContainer">
-						<span className="featuredMoney">${edit ? <input name="price" type="text" style={{ width: "80px" }} value={value.price} onChange={handleChange} /> : <>{data.price}</>}</span>
+						<span className="featuredMoney">${edit ? <input name="price" type="text" style={{ width: "80px" }} value={formData.price} onChange={handleChange} /> : <>{data.price}</>}</span>
 					</div>
 
 
 					<span className="featuredSub">
-						{edit ? <input name="sessions_per_week" type="text" value={value.sessions_per_week} onChange={handleChange} /> : <>{data.sessions_per_week}</>}
+						{edit ? <input name="sessions_per_week" type="text" value={formData.sessions_per_week} onChange={handleChange} /> : <>{data.sessions_per_week}</>}
 					</span>
 					<span className="featuredSub">
-						{edit ? <input name="session_times" type="text" value={value.session_times} onChange={handleChange} /> : <>{data.session_times}</>}
+						{edit ? <input name="session_times" type="text" value={formData.session_times} onChange={handleChange} /> : <>{data.session_times}</>}
 					</span>
 					<span className="featuredSub">
-						{edit ? <input name="description" type="text" value={value.description} onChange={handleChange} /> : <>{data.description} </>}
+						{edit ? <input name="description" type="text" value={formData.description} onChange={handleChange} /> : <>{data.description} </>}
 					</span>
 					<br />
 					{edit ? <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="submit">Update</button> : ""}
