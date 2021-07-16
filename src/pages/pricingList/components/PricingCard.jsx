@@ -3,14 +3,17 @@ import "./pricingcard.css";
 import { DeleteOutline } from '@material-ui/icons';
 
 
+
 export default function PricingCard({ type, data, onUpdate, onDelete }) {
 
 	const [edit, setEdit] = useState(false);
 	const [formData, setFormData] = useState({...data});
 
+
 	let card = (<></>);
 
 	const handleEdit = (event) => {
+		console.log("handle edit ", event)
 		event.preventDefault();
 		setEdit(!edit);
 	}
