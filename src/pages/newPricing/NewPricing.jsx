@@ -1,7 +1,7 @@
 import React from 'react';
 import "./newPricing.css";
 
-export default function NewProduct() {
+export default function NewPricing() {
 	return (
 		<div className="newProduct">
 			<div className="newProduct">

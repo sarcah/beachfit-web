@@ -4,20 +4,19 @@ import { DeleteOutline } from '@material-ui/icons';
 import axios from "axios";
 
 
-export default function PricingCard({ type, data, editMode, onDelete }) {
+export default function PricingCard({ type, data, editMode, onUpdate, onDelete }) {
 	const API_URL = process.env.REACT_APP_API_URL;
 
 	const [edit, setEdit] = useState(editMode);
 	const [value, setValue] = useState({ ...data });
-	const [submit, setSubmit] = useState(false);
-	const [deleted, setDeleted] = useState(false);
 
 	let card = (<></>);
+
+	
 
 	const handleEdit = (event) => {
 		event.preventDefault();
 		setEdit(!edit);
-		setSubmit(false);
 	}
 
 	const handleChange = (event) => {
@@ -25,41 +24,20 @@ export default function PricingCard({ type, data, editMode, onDelete }) {
 		setValue(event.target.value);
 	}
 
-
-
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		setSubmit(true);
-		const target = event.target;
-		const formData = {
-			name: target.name.value,
-			price: target.price.value,
-			description: target.description.value,
-			sessions_per_week: target.sessions_per_week.value,
-			session_times: target.session_times.value
-		}
-		axios.patch(`${API_URL}/pricings/1/plans/${target.id.value}`, formData)
-			.then(response => {
-				if (response.status == 200) {
-					setEdit(!edit)
-				}
-			})
-			.catch()
+		setEdit(!edit)
+		onUpdate(event.target);
 	}
 
-
-	const handleDelete = () => {
-		axios.delete(`${API_URL}/pricings/1/plans/${data.id}`)
-			.then(response => {
-
-			})
-			.catch()
-	}
+	useEffect(() => {
+		// console.log(value);
+	}, [edit, value])
 
 	switch (type) {
 		case "plans":
 			card = (
-				<form onSubmit={(event, value) => { handleSubmit(event) }} className="featuredItem">
+				<form onSubmit={(event) => { handleSubmit(event) }} className="featuredItem">
 					<div className="flex justify-between">
 						<input type="hidden" name="id" value={value.id} />
 						<span className="featuredTitle">

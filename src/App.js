@@ -26,36 +26,29 @@ function About() {
 function App() {
   const API_URL = process.env.REACT_APP_API_URL;
   const [token, setToken] = useState(getToken());
+  const [flash, setFlash] = useState('');
   const signedIn = !!token;
-  const requireAuth = render => props => (signedIn ? render(props) : <Redirect to="/admin" />);
-  const handleSignIn = ({email, password}) => signIn(email, password).then(token => setToken(token));
+  const requireAuth = render => props => (signedIn ? render(props) : <Redirect to="/admin/signin" />);
+  const handleSignIn = ({email, password}) => signIn(email, password).then(([response, token]) => {
+    console.log(token)
+    setToken(token);
+    return response;
+  }).then(response => {console.log(response)}).catch();
   
   return (
     <div className="App">
+      { flash && <>flash</> }
       <Router>
       {
         signedIn ?
-          (<div>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/home">Home</Link>
-                </li>
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-                <li>
-                  <Link to="/admin">Admin</Link>
-                </li>
-              </ul>
-            </nav>
-          </div>) : null
+          <Redirect to="/admin" /> : null
         }
 
         <Switch>
           <Route exact path="/">            <Home />            </Route>
           <Route path="/about">             <About />           </Route>
-          <Route path="/admin" render={() => (!signedIn ? ( 
+          <Route path="/admin/signin"><SignInForm onSignIn={handleSignIn} /></Route>
+          <Route path="/admin" render={() => (signedIn ? ( 
             
             <Router>
               <Topbar />
@@ -76,7 +69,7 @@ function App() {
               </div>
             </Router>
             
-            ) : (<SignInForm onSignIn={handleSignIn} />))}>
+            ) : (<Redirect to="/admin/signin" />))}>
           </Route>
         </Switch>
 
