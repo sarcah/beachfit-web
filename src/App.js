@@ -14,9 +14,9 @@ import AdminHome from "./pages/home/Home";
 import BlogList from './pages/blogList/BlogList';
 import Blog from './pages/blog/Blog';
 import NewBlog from './pages/newBlog/NewBlog';
-import NewProduct from './pages/newProduct/NewProduct';
-import ProductList from "./pages/productList/ProductList";
-import Product from "./pages/product/Product";
+import NewPricing from './pages/newPricing/NewPricing';
+import PricingList from "./pages/pricingList/PricingList";
+import Pricing from "./pages/pricing/Pricing";
 
 
 function About() {
@@ -66,9 +66,12 @@ function App() {
                   <Route exact path="/admin/blogs"><BlogList /></Route>
                   <Route exact path="/admin/blogs/1/posts/new"><NewBlog /></Route>
                   <Route exact path="/admin/blogs/1/posts/:id" render={(props) => <Blog id={props.match.params.id} />} />
-                  <Route exact path="/admin/products"><ProductList /></Route>
-                  <Route exact path="/admin/products/new"><NewProduct /></Route>
-                  <Route exact path="/admin/products/:productId"><Product /></Route>
+                  <Route exact path="/admin/pricings"><PricingList /></Route>
+                  <Route exact path="/admin/pricings/new"><NewPricing /></Route>
+                  <Route exact path="/admin/pricings/:productId"><Pricing /></Route>
+                  <Route exact path="/admin/faqs"><PricingList /></Route>
+                  <Route exact path="/admin/faqs/new"><NewPricing /></Route>
+                  <Route exact path="/admin/faqs/:productId"><Pricing /></Route>
                 </Switch>
               </div>
             </Router>

@@ -11,7 +11,8 @@ export default function BlogList() {
 	const [data, setData] = useState([]);
 
 	const handleDelete = (id) => {
-		// setData(data.filter(item => item.id !== id))
+		setData(data.filter(item => item.id !== id))
+		
 		axios.delete(`${API_URL}/blogs/1/posts/${id}`)
 			.then(response => {
 				console.log(response.data);
@@ -19,6 +20,7 @@ export default function BlogList() {
 	}
 
 	useEffect(() => {
+		
 		axios.get(`${API_URL}/blogs/1/posts`)
 			.then(response => {
 				setData(response.data)
