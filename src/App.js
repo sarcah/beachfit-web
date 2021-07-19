@@ -2,7 +2,7 @@ import './App.css';
 import React, { useState } from 'react';
 import Topbar from "./components/topbar/Topbar"
 import Sidebar from "./components/sidebar/Sidebar"
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import SignInForm from './components/SignInForm';
 import { signIn, getToken } from "./api/auth";
 import Home from "./front/Home";
@@ -10,16 +10,9 @@ import AdminHome from "./pages/home/Home";
 import BlogList from './pages/blogList/BlogList';
 import Blog from './pages/blog/Blog';
 import NewBlog from './pages/blogList/components/newBlog/NewBlog';
-import NewPricing from './pages/newPricing/NewPricing';
 import PricingList from "./pages/pricingList/PricingList";
-import Pricing from "./pages/pricing/Pricing";
-import NewFaqItem from './pages/faqList/components/NewFaqItem';
 import FaqList from "./pages/faqList/FaqList";
-import FaqItem from "./pages/pricing/Pricing";
-
-function About() {
-  return <h2>About</h2>;
-}
+import About from "./front/about/About";
 
 function App() {
   const [token, setToken] = useState(getToken());
@@ -43,7 +36,7 @@ function App() {
           <Route path="/about">             <About />           </Route>
           <Route path="/admin/signin"><SignInForm onSignIn={handleSignIn} /></Route>
           <Route path="/admin" render={() => (signedIn ? ( 
-            
+          
             <Router>
               <Topbar />
               <div className="container-admin-sidebar">
