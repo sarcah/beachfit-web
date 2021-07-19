@@ -15,7 +15,7 @@ export default function Sidebar() {
 						<SideBarLink linkTo="/admin" linkText="Home" />
 						<SideBarLink linkTo="/admin/blogs" linkText="Blogs" />
 						<SideBarLink linkTo="/admin/pricings" linkText="Pricings" />
-						<SideBarLink linkTo="/admin/faq" linkText="FAQs" />
+						<SideBarLink linkTo="/admin/faqs" linkText="FAQs" />
 						<SideBarLink linkTo="/admin/settings" linkText="Settings" />
 
 

@@ -5,7 +5,7 @@ import Chart from "../../components/chart/Chart";
 import { productData } from "../../dummyData";
 import { Publish } from "@material-ui/icons";
 
-export default function Product() {
+export default function Pricing() {
 	return (
 		<div className="product">
 			<div className="productTitleContainer">

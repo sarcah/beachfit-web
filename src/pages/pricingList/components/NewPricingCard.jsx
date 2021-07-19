@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import "./pricingcard.css";
 import axios from "axios";
-
+import { API_URL } from "../../../api/auth.js";
 
 export default function NewPricingCard({ type, data, onCreate, onCancel }) {
-	const API_URL = process.env.REACT_APP_API_URL;
-
 	const [value, setValue] = useState({ ...data });
-	const [submit, setSubmit] = useState(false);
-	const [deleted, setDeleted] = useState(false);
 
 	let card = (<></>);
 
@@ -19,7 +15,6 @@ export default function NewPricingCard({ type, data, onCreate, onCancel }) {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		setSubmit(true);
 		const target = event.target;
 		const formData = {
 			name: target.name.value,
@@ -31,20 +26,10 @@ export default function NewPricingCard({ type, data, onCreate, onCancel }) {
 		}
 		axios.post(`${API_URL}/pricings/1/plans/${target.id.value}`, formData)
 			.then(response => {
-				if (response.status == 201) {
-					onCreate();
-				}
+				if (response.status == 201) onCreate(true); 
+				else Promise.reject()
 			})
-			.catch()
-	}
-
-
-	const handleDelete = () => {
-		axios.delete(`${API_URL}/pricings/1/plans/${data.id}`)
-			.then(response => {
-
-			})
-			.catch()
+			.catch(() => {onCreate(false);})
 	}
 
 	switch (type) {
