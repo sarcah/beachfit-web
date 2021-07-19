@@ -4,6 +4,7 @@ import MainSVG1 from "./svg/MainSVG1";
 import MainSVG2 from "./svg/MainSVG2";
 import MainSVG3 from "./svg/MainSVG3";
 import { Link } from 'react-router-dom';
+import background from "./banner-cover.jpg";
 
 
 const Home = () => {
@@ -13,8 +14,9 @@ const Home = () => {
 			<div
 				className="w-full m-0 p-0 bg-cover bg-bottom"
 				style={{
-					backgroundImage: 'url("./cover.jpg")',
-					height: "60vh",
+					backgroundImage: `url(${background})`,
+					backgroundSize: "cover",
+					height: "85vh",
 					maxHeight: 460,
 				}}
 			>
@@ -31,12 +33,12 @@ const Home = () => {
 				<div className="mx-0 sm:mx-6">
 					{/*Nav*/}
 					<nav className="mt-0 w-full">
-						<div className="container mx-auto flex items-center">
+						<div className="container mx-auto flex items-center bg-white">
 							<div className="flex w-1/2 pl-4 text-sm">
 								<ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
 									<li className="mr-2">
 										<a
-											className="inline-block py-2 px-2 text-white no-underline hover:underline"
+											className="inline-block py-2 px-2 text-black no-underline hover:underline"
 											href="post.html"
 										>
 											POST

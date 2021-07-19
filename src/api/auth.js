@@ -1,8 +1,5 @@
-// import React from "react";
-import axios from 'axios';
-
 const TOKEN_KEY = 'session_token';
-const API_URL = process.env.REACT_APP_API_URL;
+export const API_URL = process.env.REACT_APP_API_URL;
 
 export function signIn(email, password) {
     const url = `${API_URL}/users/sign_in`;
@@ -21,14 +18,19 @@ export function signIn(email, password) {
                 return [response.json(), Promise.reject({status, statusText})];
             }
         }).catch()
-        // .then(response => { console.log(response) })
-    
 }
 
 export function signOut() {
     const url = `${API_URL}/users/sign_out`;
-    return fetch(url, getToken())
-        .then(response => {
+    return fetch(url, {
+        method: 'DELETE',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+            'Accept': 'application/json',
+            'Authorization': getToken()
+            }
+        }).then(response => {
             if (response.ok) return removeToken();
             else {
                 const { status, statusText } = response;

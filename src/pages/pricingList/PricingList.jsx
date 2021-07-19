@@ -48,6 +48,7 @@ export default function PricingList() {
 
 	return (
 		<div>
+			<h1 className="block text-2xl ml-0 mr-0 font-bold mb-6"> Pricings Page</h1>
 			<button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => {setNewPlan(true)}}>Create</button>
 			<div className="flex flex-row flex-wrap">
 			{

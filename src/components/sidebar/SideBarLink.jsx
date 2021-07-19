@@ -3,7 +3,7 @@ import "./sidebar.css";
 import { LineStyle, Timeline, TrendingUp } from "@material-ui/icons";
 import { Link, useLocation } from "react-router-dom";
 
-export default function SideBarLink({linkTo, linkText}) {
+export default function SideBarLink({ linkTo, linkText }) {
 	const active = (useLocation().pathname == linkTo);
 
 	return (
