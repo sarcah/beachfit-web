@@ -35,7 +35,7 @@ export default function NewPricingCard({ type, data, onCreate, onCancel }) {
 	switch (type) {
 		case "plans":
 			card = (
-				<form onSubmit={(event) => { handleSubmit(event) }} className="featuredItem flex-shrink-0 mb-10">
+				<form onSubmit={(event) => { handleSubmit(event) }} className="flex flex-col p-8 rounded-lg mb-8 bg-white border-2 bg-opacity-20 shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5 flex-shrink-0">
 					<div className="flex justify-between">
 						<input type="hidden" name="id" value={value.id} />
 						<span className="featuredTitle">

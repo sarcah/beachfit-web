@@ -25,11 +25,9 @@ function App() {
   
   return (
     <div className="App">
+      Header Test
       <Router>
-        {
-          signedIn ?
-            <Redirect to="/admin" /> : null
-        }
+        { signedIn ? <Redirect to="/admin" /> : null }
 
         <Switch>
           <Route exact path="/">            <Home />            </Route>
@@ -48,7 +46,6 @@ function App() {
                   <Route exact path="/admin/blogs/1/posts/:id" render={requireAuth((props) => (<Blog id={props.match.params.id} />))} />
                   <Route exact path="/admin/pricings" render={requireAuth(() => (<PricingList />))} />
                   <Route exact path="/admin/faqs" render={requireAuth(() => (<FaqList />))} />
-                  
                 </Switch>
               </div>
             </Router>
