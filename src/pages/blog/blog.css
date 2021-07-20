@@ -1,0 +1,163 @@
+.blog {
+  flex: 4;
+  padding: 20px;
+}
+
+.blogTitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.blogTitle {
+  display: block;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.blogAddButton {
+  width: 80px;
+  border: none;
+  padding: 5px;
+  background-color: teal;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+}
+
+.blogContainer {
+  display: flex;
+  margin-top: 20px;
+}
+
+.blogShow {
+  flex: 1;
+  padding: 20px;
+  -webkit-box-shadow: 9px 9px 29px -7px #000000;
+  box-shadow: 9px 9px 29px -7px #000000;
+}
+
+.blogUpdate {
+  flex: 2;
+  padding: 20px;
+  -webkit-box-shadow: 9px 9px 29px -7px #000000;
+  box-shadow: 9px 9px 29px -7px #000000;
+  margin-left: 20px;
+}
+
+.blogShowTop {
+  display: flex;
+  align-items: center;
+}
+
+.blogShowImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.blogShowTopTitle {
+  display: flex;
+  flex-direction: column;
+}
+
+.blogShowblogname {
+  font-weight: 600;
+}
+
+.blogShowblogTitle {
+  font-weight: 300;
+}
+
+.blogShowBottom {
+  margin: 12px 20px;
+}
+
+.blogShowTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(158, 158, 158);
+}
+
+.blogShowInfo {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  color: #444;
+}
+
+.blogShowIcon {
+  font-style: 16px;
+}
+
+.blogShowInfoTitle {
+  margin-left: 10px;
+}
+
+.blogUpdateImage {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.blogUpdateForm {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.blogUpdateTitle {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.blogUpdateItem {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.blogUpdateItem > label {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.blogUpdateInput {
+  border: none;
+  width: 250px;
+  border-bottom: 1px solid gray;
+  height: 30px;
+}
+
+.blogUpdateRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blogUpdateUpload {
+  display: flex;
+}
+
+.blogUpdateIcon {
+  cursor: pointer;
+}
+
+.blogUpdateButton {
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  background-color: darkblue;
+  color: white;
+  font-weight: bolder;
+}

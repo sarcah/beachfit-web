@@ -1,0 +1,30 @@
+.faqItem {
+	flex: 1;
+	margin: 0px 20px;
+	padding: 30px;
+	border-radius: 10px;
+	/* cursor: pointer; */
+	-webkit-box-shadow: 9px 9px 29px -7px #000000; 
+	box-shadow: 9px 9px 29px -7px #000000;
+	max-width: 90%;
+	margin-bottom: 2.5rem;
+}
+
+.faqTitle {
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+.faqMoneyContainer {
+	margin: 10px 0px;
+}
+
+.faqMoney {
+	font-size: 1rem;
+}
+
+.faqIcon {
+	font-size: 14px;
+	margin-left: 5px;
+	color: green;
+}
