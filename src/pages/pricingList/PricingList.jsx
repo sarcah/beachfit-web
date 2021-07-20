@@ -51,14 +51,13 @@ export default function PricingList() {
 			<h1 className="block text-2xl ml-0 mr-0 font-bold mb-6"> Pricings Page</h1>
 			<button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => {setNewPlan(true)}}>Create</button>
 			<div className="flex flex-row flex-wrap">
+			{  newPlan ? <NewPricingCard type="plans" onCreate={()=>{setNewPlan(false)}} onCancel={()=>{setNewPlan(false)}} /> : <></>  }
 			{
 				(plans.length > 0) ? <>{
 					plans.map(plan => <PricingCard type="plans" data={plan} onUpdate={(target) => handleUpdate(target, "plans")} onDelete={() => handleDelete("plans", plan.id)} />)
 					}</> : <>You have no Plans.</>
 			}
-			{
-				newPlan ? <NewPricingCard type="plans" onCreate={()=>{setNewPlan(false)}} onCancel={()=>{setNewPlan(false)}} /> : <></>
-			}
+			
 			</div>
 		</div>
 	)

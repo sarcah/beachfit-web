@@ -33,12 +33,11 @@ export default function PricingCard({ type, data, onUpdate, onDelete }) {
 	switch (type) {
 		case "plans":
 			card = (
-				<form onSubmit={(event) => { handleSubmit(event) }} className="featuredItem">
+				<form onSubmit={(event) => { handleSubmit(event) }} className="flex flex-col p-8 rounded-lg mb-8 bg-white border-2 bg-opacity-20 shadow-lg pin-r pin-y md:w-4/5">
 					<div className="flex justify-between">
 						<input type="hidden" name="id" value={formData.id} />
 						<span className="featuredTitle">
-							{edit ? <input name="name" style={{ width: "70%" }} type="text" value={formData.name} onChange={handleChange} /> : <>{data.name}</>
-							}
+							{ edit ? <input name="name" style={{ width: "70%" }} type="text" value={formData.name} onChange={handleChange} /> : <>{data.name}</> }
 						</span>
 						<div className="flex justify-end items-end">
 							<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(event)=>{handleEdit(event)}}>{edit ? "Cancel" : "Edit"}</button>
