@@ -25,9 +25,8 @@ function App() {
   
   return (
     <div className="App">
-      Header Test
       <Router>
-        { signedIn ? <Redirect to="/admin" /> : null }
+        {/* { signedIn ? <Redirect to="/admin" /> : null } */}
 
         <Switch>
           <Route exact path="/">            <Home />            </Route>

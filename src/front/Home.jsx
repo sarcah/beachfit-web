@@ -6,6 +6,7 @@ import MainSVG3 from "./svg/MainSVG3";
 import { Link } from 'react-router-dom';
 import background from "./cover.jpg";
 import beachfitLogo from "./beachfit-logo.png";
+import S3FileUpload from "react-s3";
 
 
 const Home = () => {

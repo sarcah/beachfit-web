@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./pricingList.css";
 import axios from 'axios';
 import PricingCard from './components/PricingCard';
@@ -11,7 +11,6 @@ export default function PricingList() {
 	const [newPlan, setNewPlan] = useState(false);
 	const [newPass, setNewPass] = useState(false);
 	const [update, setUpdate] = useState(false);
-
 
 	const handleDelete = (endpoint, id) => {
 		setPlans(plans.filter(item => item.id !== id))
