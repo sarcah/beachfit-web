@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from "./components/Navbar";
-import MainSVG1 from "./svg/MainSVG1";
-import MainSVG2 from "./svg/MainSVG2";
-import MainSVG3 from "./svg/MainSVG3";
-import { Link } from 'react-router-dom';
-import background from "./cover.jpg";
-import beachfitLogo from "./beachfit-logo.png";
+import Header from "./components/Header";
 import S3FileUpload from "react-s3";
 import axios from "axios";
 import { API_URL } from '../api/auth';
-import heroImage from "./GMQtRz5w.jpeg"
+import heroImage from "./img/GMQtRz5w.jpeg"
+import idea from "./img/idea.png";
+import heart from "./img/heart.png";
+import power from "./img/power.png";
+import Footer from './components/Footer';
 
 
 const Home = () => {
@@ -23,173 +21,188 @@ const Home = () => {
 
 	return (
 		<>
-		<Navbar />
-		<div className="container md:w-4/5 mx-auto text-gray-800 leading-normal mb-64">
+			<Header />
+			<div className="container md:w-4/5 mx-auto text-gray-800 leading-normal mb-64">
 				<div className="flex flex-col text-center justify-center h-full bg-white rounded shadow-lg pt-8 mx-0 sm:mx-6">
-						{/*Lead Card*/}
-						<div className="flex h-full flex-col text-center justify-center bg-white rounded overflow-hidden shadow-lg">
-							<div className="w-full flex flex-col flex-grow flex-shrink">
-								<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-									<div className="w-full font-bold text-3xl text-gray-900 px-6 mb-6">
-										It’s time to put YOU first!
-									</div>
-									<div className="text-gray-800 text-xl text-base px-6 mb-5">
-										At BeachFit and Wellbeing we are passionate about helping you become fitter, stronger and healthier. Our workouts on the beautiful Coogee Beach, are designed to motivate and inspire you on your fitness journey, wherever you may be.
-									</div>
+					{/*Lead Card*/}
+					<div className="flex h-full flex-col text-center justify-center bg-white rounded overflow-hidden shadow-lg">
+						<div className="w-full flex flex-col flex-grow flex-shrink">
+							<div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+								<div className="w-full font-bold text-3xl text-gray-900 px-6 mb-6">
+									It’s time to put YOU first!
+								</div>
+								<div className="text-gray-800 text-xl text-base px-6 mb-5">
+									At BeachFit and Wellbeing we are passionate about helping you become fitter, stronger and healthier. Our workouts on the beautiful Coogee Beach, are designed to motivate and inspire you on your fitness journey, wherever you may be.
 								</div>
 							</div>
-							<div className="w-full rounded-t">
-								<img src={heroImage} className="h-full w-full shadow" />
-							</div>
-
-
 						</div>
-						{/*/Lead Card*/}
-						{/*Posts Container*/}
-						Testimonials
-						<div className="flex flex-wrap justify-between pt-12 -mx-6">
-							{/*1/3 col */}
-							{
-								testimonials && testimonials.map(testimonial => {
-									return (
-										<div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-											<div className="flex-1 bg-white rounded-t rounded-b-none shadow-lg">
+						<div className="w-full rounded-t">
+							<img src={heroImage} className="h-full w-full shadow" />
+						</div>
 
-												<img
-													src="https://source.unsplash.com/collection/225/800x600"
-													className="h-64 w-full rounded-t pb-6" alt=""
-												/>
 
-												<div className="w-full font-bold text-xl text-gray-900 px-6">
-													{testimonial.name}
-												</div>
-												<p className="text-gray-800 text-sm px-6 mb-5">
-													{testimonial.body}
-												</p>
+					</div>
+					{/*/Lead Card*/}
+					{/*Posts Container*/}
+					Testimonials
+					<div className="flex flex-wrap justify-between pt-12 -mx-6">
+						{/*1/3 col */}
+						{
+							testimonials && testimonials.map(testimonial => {
+								return (
+									<div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+										<div className="flex-1 bg-white rounded-t rounded-b-none shadow-lg">
 
+											<img
+												src="https://source.unsplash.com/collection/225/800x600"
+												className="h-64 w-full rounded-t pb-6" alt=""
+											/>
+
+											<div className="w-full font-bold text-xl text-gray-900 px-6">
+												{testimonial.name}
 											</div>
+											<p className="text-gray-800 text-sm px-6 mb-5">
+												{testimonial.body}
+											</p>
+
 										</div>
-									)
-								})
-							}
-
-
-							{/*1/2 col */}
-							
-							{/*1/2 col */}
-							
-							{/*2/3 col */}
-							
-							
-						</div>
-						{/*/ Post Content*/}
+									</div>
+								)
+							})
+						}
 					</div>
-					{/*Subscribe*/}
-					<div className="container font-sans bg-green-100 rounded mt-8 p-4 md:p-24 text-center">
-						<h2 className="font-bold break-normal text-2xl md:text-4xl">
-							Subscribe to Ghostwind CSS
-						</h2>
-						<h3 className="font-bold break-normal font-normal text-gray-600 text-base md:text-xl">
-							Get the latest posts delivered right to your inbox
-						</h3>
-						<div className="w-full text-center pt-4">
-							<form action="#">
-								<div className="max-w-xl mx-auto p-1 pr-0 flex flex-wrap items-center">
-									<input
-										type="email"
-										placeholder="youremail@example.com"
-										className="flex-1 appearance-none rounded shadow p-3 text-gray-600 mr-2 focus:outline-none"
-									/>
-									<button
-										type="submit"
-										className="flex-1 mt-4 md:mt-0 block md:inline-block appearance-none bg-green-500 text-white text-base font-semibold tracking-wider uppercase py-4 rounded shadow hover:bg-green-400"
-									>
-										Subscribe
-									</button>
+					{/*/ Post Content*/}
+				</div>
+
+				<table className="w-full table">
+					<tbody>
+						<tr className="bg-white">
+							<td className="p-0">
+								<div>
+									<div className="block w-5/12">
+										
+										
+											<img
+												src={idea}
+												height={512}
+												width={512}
+												style={{ width: "100%" }}
+											/>
+										
+									</div>
 								</div>
-							</form>
-						</div>
-					</div>
-					{/* /Subscribe*/}
-					{/*Author*/}
-					<div className="flex w-full items-center font-sans p-8 md:p-24">
-						<img
-							className="w-10 h-10 rounded-full mr-4"
-							src="http://i.pravatar.cc/300"
-							alt="Avatar of Author"
-						/>
-						<div className="flex-1">
-							<p className="text-base font-bold text-base md:text-xl leading-none">
-								Ghostwind CSS
-							</p>
-							<p className="text-gray-600 text-xs md:text-base">
-								Tailwind CSS version of Ghost's Casper theme by{" "}
-								<a
-									className="text-gray-800 hover:text-green-500 no-underline border-b-2 border-green-500"
-									href="https://www.tailwindtoolbox.com"
+								<div
+									className="wptb-text-container wptb-ph-element wptb-item-javascript-indic wptb-element-text-1"
+									style={{ fontSize: 18 }}
 								>
-									TailwindToolbox.com
-								</a>
-							</p>
-						</div>
-						<div className="justify-end">
-							<button className="bg-transparent border border-gray-500 hover:border-green-500 text-xs text-gray-500 hover:text-green-500 font-bold py-2 px-4 rounded-full">
-								Read More
-							</button>
-						</div>
-					</div>
-					{/*/Author*/}
-			<footer className="bg-gray-900">
-				<div className="container max-w-6xl mx-auto flex items-center px-2 py-8">
-					<div className="w-full mx-auto flex flex-wrap items-center">
-						<div className="flex w-full md:w-1/2 justify-center md:justify-start text-white font-extrabold">
-							<a
-								className="text-gray-900 no-underline hover:text-gray-900 hover:no-underline"
-								href="#"
+									<div className style={{ position: "relative" }}>
+										<p style={{ textAlign: "center" }} className>
+											<strong>Inspiring</strong>
+											<br />
+											<br />
+											Not only do we create fun workouts to push you to your limits,
+											what can be better than having the sunrise on Coogee Beach as
+											your backdrop?!
+										</p>
+									</div>
+								</div>
+							</td>
+							<td
+								className="wptb-cell"
+								data-x-index={1}
+								data-wptb-css-td-auto-width="true"
+								style={{ padding: 0 }}
+								data-y-index={0}
 							>
-								👻 <span className="text-base text-gray-200">Ghostwind CSS</span>
-							</a>
-						</div>
-						<div className="flex w-full pt-2 content-center justify-between md:w-1/2 md:justify-end">
-							<ul className="list-reset flex justify-center flex-1 md:flex-none items-center">
-								<li>
-									<a
-										className="inline-block py-2 px-3 text-white no-underline"
-										href="#"
-									>
-										Active
-									</a>
-								</li>
-								<li>
-									<a
-										className="inline-block text-gray-600 no-underline hover:text-gray-200 hover:underline py-2 px-3"
-										href="#"
-									>
-										link
-									</a>
-								</li>
-								<li>
-									<a
-										className="inline-block text-gray-600 no-underline hover:text-gray-200 hover:underline py-2 px-3"
-										href="#"
-									>
-										link
-									</a>
-								</li>
-								<li>
-									<a
-										className="inline-block text-gray-600 no-underline hover:text-gray-200 hover:underline py-2 px-3"
-										href="#"
-									>
-										link
-									</a>
-								</li>
-							</ul>
-						</div>
+								<div className="wptb-image-container wptb-ph-element wptb-item-javascript-indic wptb-element-image-1">
+									<div className="wptb-image-wrapper">
+										{" "}
+										<a style={{ display: "block", width: "24%" }} className>
+											<img
+												src={heart}
+												height={512}
+												width={512}
+												style={{ width: "100%" }}
+											/>
+										</a>{" "}
+									</div>
+								</div>
+								<div
+									className="wptb-text-container wptb-ph-element wptb-item-javascript-indic wptb-element-text-2"
+									style={{ fontSize: 18 }}
+								>
+									<div className style={{ position: "relative" }}>
+										<p style={{ textAlign: "center" }} className>
+											<strong className>
+												<br />
+												Inclusive
+											</strong>
+											<br />
+											<br />
+											Whether you are an experienced gym-goer or new to exercise, we
+											cater to all levels. We keep class numbers low, so that you get
+											the guidance you deserve.
+										</p>
+									</div>
+								</div>
+							</td>
+							<td className="p-0">
+								<div className="">
+									<div className="">
+										<a style={{ display: "block", width: "34%" }} className><img className="w-full" src={power} height={512} width={512} /></a>
+									</div>
+								</div>
+								<div
+									className="wptb-text-container wptb-ph-element wptb-item-javascript-indic wptb-element-text-3"
+									style={{ fontSize: 18 }}
+								>
+									<div className style={{ position: "relative" }}>
+										<p style={{ textAlign: "center" }}>
+											<strong>Innovative</strong>
+											<br />
+											<br />
+											If it doesn't challenge you, it doesn't change you and at
+											BeachFit and Wellbeing, no two workouts are the same to really
+											keep you on your toes!
+										</p>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+				{/*Subscribe*/}
+				<div className="container font-sans bg-green-100 rounded mt-8 p-4 md:p-24 text-center">
+					<h2 className="font-bold break-normal text-2xl md:text-4xl">
+						Subscribe to Ghostwind CSS
+					</h2>
+					<h3 className="font-bold break-normal font-normal text-gray-600 text-base md:text-xl">
+						Get the latest posts delivered right to your inbox
+					</h3>
+					<div className="w-full text-center pt-4">
+						<form action="#">
+							<div className="max-w-xl mx-auto p-1 pr-0 flex flex-wrap items-center">
+								<input
+									type="email"
+									placeholder="youremail@example.com"
+									className="flex-1 appearance-none rounded shadow p-3 text-gray-600 mr-2 focus:outline-none"
+								/>
+								<button
+									type="submit"
+									className="flex-1 mt-4 md:mt-0 block md:inline-block appearance-none bg-green-500 text-white text-base font-semibold tracking-wider uppercase py-4 rounded shadow hover:bg-green-400"
+								>
+									Subscribe
+								</button>
+							</div>
+						</form>
 					</div>
 				</div>
-			</footer>
-		</div>
+				{/* /Subscribe*/}
+				
+				<Footer />
+			</div>
 		</>
 	);
 }

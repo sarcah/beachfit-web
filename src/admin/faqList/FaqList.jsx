@@ -21,10 +21,10 @@ export default function FaqList() {
 				type: 'success'
 			});
 		} else setNotify({
-				isOpen: true,
-				message: 'There was an error in creating the FAQ item. Your data was not saved.',
-				type: 'error'
-			});
+			isOpen: true,
+			message: 'There was an error in creating the FAQ item. Your data was not saved.',
+			type: 'error'
+		});
 	}
 
 	const handleDelete = (id) => {
@@ -50,7 +50,7 @@ export default function FaqList() {
 	const handleUpdate = (target) => {
 		const formData = {
 			question: target.question.value,
-			answer:   target.answer.value
+			answer: target.answer.value
 		}
 		axios.patch(`${API_URL}/faqs/1/items/${target.id.value}`, formData)
 			.then(response => {
@@ -74,20 +74,20 @@ export default function FaqList() {
 
 	useEffect(() => {
 		axios.get(`${API_URL}/faqs/1/items`)
-			.then(response => { setPlans(()=>response.data) }).catch();
+			.then(response => { setPlans(() => response.data) }).catch();
 	}, [newPlan, update])
 
 	return (
 		<div>
 			<Notification notify={notify} setNotify={setNotify} />
 			<h1 className="block text-2xl ml-0 mr-0 font-bold mb-6"> FAQs Page</h1>
-			<button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => {setNewPlan(true)}}>Create</button>
-			
+			<button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => { setNewPlan(true) }}>Create</button>
+
 			<div className="flex flex-col">
-				{	newPlan ? <NewFaqItem type="plans" onCreate={handleCreate} onCancel={()=>{setNewPlan(false)}} /> : <></>	}
-				{	(plans.length > 0) ? <>{
-						plans.map(plan => <FaqItem data={plan} onUpdate={(target) => handleUpdate(target)} onDelete={() => handleDelete(plan.id)} />) 
-						}</> : <>You have no FAQs.</> 
+				{newPlan ? <NewFaqItem type="plans" onCreate={handleCreate} onCancel={() => { setNewPlan(false) }} /> : <></>}
+				{(plans.length > 0) ? <>{
+					plans.map(plan => <FaqItem data={plan} onUpdate={(target) => handleUpdate(target)} onDelete={() => handleDelete(plan.id)} />)
+				}</> : <>You have no FAQs.</>
 				}
 			</div>
 		</div>

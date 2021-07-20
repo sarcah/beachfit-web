@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from "../components/Navbar";
+import Navbar from "./components/Header";
 import { PhoneAndroid } from '@material-ui/icons';
-import Yvonne from "./yvonne.jpg";
+import Yvonne from "./img/yvonne.jpg";
 
 function About() {
 
@@ -28,11 +28,10 @@ function About() {
 								<p className="leading-8 mb-10">Get in touch today if you'd like to find and more and to book your free trial.</p>
 
 								<a href="mailto: info@beachfitandwellbeing.com">
-									<button className="bg-black mr-8 rounded-md py-3 px-7 w-2/6 hover:bg-gray-800 text-white">
-										Email Me
+									<button className="bg-black mr-8 rounded-md px-5 py-3 sm:px-7 sm:w-2/6 hover:bg-gray-800 text-white">Email Me
 									</button>
 								</a>
-								<button onClick={handleShowPhoneNumber} className="bg-black rounded-md py-3 px-7 w-2/6 hover:bg-gray-800 text-white">Call Me</button>
+								<button onClick={handleShowPhoneNumber} className="bg-black mr-8 rounded-md px-5 py-3 sm:px-7 sm:w-2/6 hover:bg-gray-800 text-white">Call Me</button>
 								<div id="phoneNumber" className="mt-8 hidden font-bold"><PhoneAndroid /> +61 410 068 060</div>
 							</div>
 						</div>

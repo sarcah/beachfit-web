@@ -6,13 +6,13 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import SignInForm from './components/SignInForm';
 import { signIn, getToken } from "./api/auth";
 import Home from "./front/Home";
-import AdminHome from "./pages/home/Home";
-import BlogList from './pages/blogList/BlogList';
-import Blog from './pages/blog/Blog';
-import NewBlog from './pages/blogList/components/newBlog/NewBlog';
-import PricingList from "./pages/pricingList/PricingList";
-import FaqList from "./pages/faqList/FaqList";
-import About from "./front/about/About";
+import AdminHome from "./admin/home/Home";
+import BlogList from './admin/blogList/BlogList';
+import Blog from './admin/blog/Blog';
+import NewBlog from './admin/blogList/components/newBlog/NewBlog';
+import PricingList from "./admin/pricingList/PricingList";
+import FaqList from "./admin/faqList/FaqList";
+import About from "./front/About";
 
 function App() {
   const [token, setToken] = useState(getToken());
@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* { signedIn ? <Redirect to="/admin" /> : null } */}
+        { signedIn ? <Redirect to="/admin" /> : null }
 
         <Switch>
           <Route exact path="/">            <Home />            </Route>
@@ -53,11 +53,6 @@ function App() {
           </Route>
         </Switch>
       </Router>
-
-      
-      {/* <Admin dataProvider={restProvider('http://localhost:3000')}>
-        <Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} icon={PostIcon} />
-      </Admin> */}
     </div>
   );
 }
