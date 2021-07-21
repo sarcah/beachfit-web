@@ -3,6 +3,8 @@ import Header from "./components/Header";
 import { API_URL } from "../api/auth";
 import { PhoneAndroid } from '@material-ui/icons';
 import axios from 'axios';
+import Footer from './components/Footer';
+
 
 function Timetable() {
 
@@ -47,6 +49,7 @@ function Timetable() {
 					</div>
 				</div>
 			</div>
+			<Footer />
 		</>
 	)
 }
