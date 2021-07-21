@@ -1,9 +1,9 @@
 import './App.css';
 import React, { useState } from 'react';
-import Topbar from "./components/topbar/Topbar"
-import Sidebar from "./components/sidebar/Sidebar"
+import Topbar from "./admin/components/topbar/Topbar"
+import Sidebar from "./admin/components/sidebar/Sidebar"
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import SignInForm from './components/SignInForm';
+import SignInForm from './admin/components/SignInForm';
 import { signIn, getToken } from "./api/auth";
 import Home from "./front/Home";
 import AdminHome from "./admin/home/Home";
@@ -13,6 +13,11 @@ import NewBlog from './admin/blogList/components/newBlog/NewBlog';
 import PricingList from "./admin/pricingList/PricingList";
 import FaqList from "./admin/faqList/FaqList";
 import About from "./front/About";
+import FAQ from './front/FAQ';
+import Timetable from './front/Timetable';
+import Contact from './front/Contact';
+import Pricing from './front/Pricing';
+
 
 function App() {
   const [token, setToken] = useState(getToken());
@@ -31,6 +36,10 @@ function App() {
         <Switch>
           <Route exact path="/">            <Home />            </Route>
           <Route path="/about">             <About />           </Route>
+          <Route path="/faq">               <FAQ />           </Route>
+          <Route path="/timetable">               <Timetable />           </Route>
+          <Route path="/contact">               <Contact />           </Route>
+          <Route path="/pricing">               <Pricing />           </Route>
           <Route path="/admin/signin"><SignInForm onSignIn={handleSignIn} /></Route>
           <Route path="/admin" render={() => (signedIn ? ( 
           

@@ -13,16 +13,16 @@ function Navbar() {
 									<Link className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" to="/about">About</Link>
 								</li>
 								<li className="mr-2">
-									<a className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" href="#">Contact</a>
+									<Link className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" to="/contact">Contact</Link>
 								</li>
 								<li className="mr-2">
-									<a className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" href="#">FAQ</a>
+									<Link className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" to="/faq">FAQ</Link>
 								</li>
 								<li className="mr-2">
-									<a className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" href="post_vue.html">Timetable</a>
+									<Link className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" to="/timetable">Timetable</Link>
 								</li>
 								<li className="mr-2">
-									<a className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" href="post_vue.html">Pricing</a>
+									<a className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" href="/pricing">Pricing</a>
 								</li>
 							</ul>
 						</div>

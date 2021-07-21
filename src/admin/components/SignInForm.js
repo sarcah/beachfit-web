@@ -2,6 +2,7 @@ import React from 'react';
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Paper, Box, Grid, Typography } from '@material-ui/core';
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { makeStyles } from '@material-ui/core';
+import InstagramLogin from 'react-instagram-login';
 
 function Copyright() {
 	return (
@@ -58,6 +59,10 @@ function SignInForm({ onSignIn }) {
 		const { value: password } = elements.password;
 		onSignIn({email, password})
 	}
+
+	const responseInstagram = (access_token) => {
+		
+	}
   
 	return (
 	  <Grid container component="main" className={classes.root}>
@@ -71,6 +76,7 @@ function SignInForm({ onSignIn }) {
 			<Typography component="h1" variant="h5">
 			  Sign in
 			</Typography>
+			<InstagramLogin clientId={process.env.REACT_APP_INSTAGRAM_CLIENT_ID} onSuccess={responseInstagram} onFailure={responseInstagram} implicitAuth={true} />
 			<form className={classes.form} noValidate onSubmit={handleSubmit}>
 			  <TextField
 				variant="outlined"

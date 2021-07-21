@@ -3,7 +3,7 @@ import "./faqList.css";
 import axios from 'axios';
 import FaqItem from './components/FaqItem';
 import NewFaqItem from './components/NewFaqItem';
-import Notification from '../../components/notifications/Notification';
+import Notification from '../components/notifications/Notification';
 import { API_URL } from "../../api/auth.js";
 
 export default function FaqList() {

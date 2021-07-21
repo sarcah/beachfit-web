@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./topbar.css";
 import { NotificationsNone, Language, Settings } from "@material-ui/icons";
 import { Button } from "@material-ui/core";
-import { signOut } from '../../api/auth';
+import { signOut } from '../../../api/auth';
 import Notification from '../notifications/Notification';
 
 export default function Topbar() {

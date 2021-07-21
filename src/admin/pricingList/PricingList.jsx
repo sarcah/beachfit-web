@@ -3,7 +3,7 @@ import "./pricingList.css";
 import axios from 'axios';
 import PricingCard from './components/PricingCard';
 import NewPricingCard from './components/NewPricingCard';
-import Notification from '../../components/notifications/Notification';
+import Notification from '../components/notifications/Notification';
 
 export default function PricingList() {
 	const API_URL = process.env.REACT_APP_API_URL;
