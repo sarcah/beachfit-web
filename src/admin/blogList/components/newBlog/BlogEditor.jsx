@@ -5,7 +5,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { API_URL } from "../../../../api/auth";
 import { Redirect } from 'react-router-dom';
-import Notification from '../../../../components/notifications/Notification';
+import Notification from '../../../components/notifications/Notification';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlParser2 } from 'react-html-parser';
 
 function BlogEditor({ action, id, title, body }) {

@@ -4,7 +4,7 @@ import axios from 'axios';
 import PricingCard from './components/PricingCard';
 import NewPricingCard from './components/NewPricingCard';
 
-export default function PricingList() {
+export default function PricingList({notification}) {
 	const API_URL = process.env.REACT_APP_API_URL;
 	const [plans, setPlans] = useState({});
 	const [passes, setPasses] = useState({});
@@ -15,7 +15,11 @@ export default function PricingList() {
 	const handleDelete = (endpoint, id) => {
 		setPlans(plans.filter(item => item.id !== id))
 		axios.delete(`${API_URL}/pricings/1/${endpoint}/${id}`)
-			.then(response => console.log(response.data));
+			.then(response => {
+				if (response.status >= 200 && response.status <= 300) notification('Pricing plan deleted successfully.','success');
+				else Promise.reject();
+			})
+			.catch(() => { notification('There was an error in deleting the pricing plan.','error'); });
 	}
 
 	const handleUpdate = (target, endpoint) => {
@@ -30,14 +34,15 @@ export default function PricingList() {
 			.then(response => {
 				if (response.status == 200) {
 					setUpdate(!update);
-				}
+					notification('Pricing plan deleted successfully.','success');
+				} else Promise.reject();
 			})
-			.catch()
+			.catch(() => { notification('There was an error in updating the pricing plan.', 'error'); });
 	}
 
 	useEffect(() => {
 		axios.get(`${API_URL}/pricings/1/plans`)
-			.then(response => { setPlans(()=>response.data) }).catch();
+			.then(response => { setPlans(() => response.data) }).catch();
 	}, [newPlan, update])
 
 	useEffect(() => {
@@ -48,15 +53,15 @@ export default function PricingList() {
 	return (
 		<div>
 			<h1 className="block text-2xl ml-0 mr-0 font-bold mb-6"> Pricings Page</h1>
-			<button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => {setNewPlan(true)}}>Create</button>
+			<button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => { setNewPlan(true) }}>Create</button>
 			<div className="flex flex-row flex-wrap">
-			{  newPlan ? <NewPricingCard type="plans" onCreate={()=>{setNewPlan(false)}} onCancel={()=>{setNewPlan(false)}} /> : <></>  }
-			{
-				(plans.length > 0) ? <>{
-					plans.map(plan => <PricingCard type="plans" data={plan} onUpdate={(target) => handleUpdate(target, "plans")} onDelete={() => handleDelete("plans", plan.id)} />)
+				{newPlan ? <NewPricingCard type="plans" onCreate={() => { setNewPlan(false) }} onCancel={() => { setNewPlan(false) }} /> : <></>}
+				{
+					(plans.length > 0) ? <>{
+						plans.map(plan => <PricingCard type="plans" data={plan} onUpdate={(target) => handleUpdate(target, "plans")} onDelete={() => handleDelete("plans", plan.id)} />)
 					}</> : <>You have no Plans.</>
-			}
-			
+				}
+
 			</div>
 		</div>
 	)

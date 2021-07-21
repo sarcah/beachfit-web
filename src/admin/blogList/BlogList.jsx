@@ -5,32 +5,18 @@ import { DeleteOutline } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from "../../api/auth.js";
-import Notification from '../../components/notifications/Notification';
 
-export default function BlogList() {
+export default function BlogList({notification}) {
 	const [data, setData] = useState([]);
-	const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' })
 
 	const handleDelete = (id) => {
 		setData(data.filter(item => item.id !== id))
-
 		axios.delete(`${API_URL}/blogs/1/posts/${id}`)
 			.then(response => {
-				if (response.status >= 200 && response.status <= 300)
-					setNotify({
-						isOpen: true,
-						message: 'Blog post deleted successfully.',
-						type: 'success'
-					})
+				if (response.status >= 200 && response.status <= 300) notification("Blog post deleted successfully.", "success");
 				else Promise.reject();
 			})
-			.catch(() => {
-				setNotify({
-					isOpen: true,
-					message: 'There was an error in deleting the blog post.',
-					type: 'error'
-				})
-			});
+			.catch(() => { notification('There was an error in deleting the blog post.', 'error') });
 	}
 
 	useEffect(() => {
@@ -38,13 +24,7 @@ export default function BlogList() {
 			.then(response => {
 				setData(response.data)
 			})
-			.catch(() => {
-				setNotify({
-					isOpen: true,
-					message: 'There was an error in getting blog post data.',
-					type: 'error'
-				})
-			})
+			.catch(() => { notification('There was an error in getting blog post data.', 'error') })
 	}, []);
 
 	const columns = [
@@ -79,7 +59,6 @@ export default function BlogList() {
 
 	return (
 		<div className="userList">
-			<Notification notify={notify} setNotify={setNotify} />
 			<h1 className="block text-2xl ml-0 mr-0 font-bold mb-6"> Blogs Page</h1>
 			<Link to="/admin/blogs/1/posts/new"><button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Create</button></Link>
 			{
