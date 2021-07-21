@@ -26,6 +26,9 @@ function Navbar() {
 								<li className="mr-2">
 									<Link className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" to="/pricing">Pricing</Link>
 								</li>
+								<li className="mr-2">
+									<Link className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" to="/blogs">Blogs</Link>
+								</li>
 							</ul>
 						</div>
 						<div className="flex w-1/2 justify-end content-center">

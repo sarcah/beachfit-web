@@ -17,49 +17,55 @@ import FAQ from './front/FAQ';
 import Timetable from './front/Timetable';
 import Contact from './front/Contact';
 import Pricing from './front/Pricing';
+import Blogs from "./front/Blogs";
 import AdminRoutes from "./AdminRoutes.jsx";
+import Notification from './admin/components/notifications/Notification';
 
 
 function App() {
   const [token, setToken] = useState(getToken());
+  const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' });
   const signedIn = !!token;
   const requireAuth = render => (props => (signedIn ? render(props) : <Redirect to="/admin/signin" />));
-  const handleSignIn = ({email, password}) => signIn(email, password).then(([response, token]) => {
-    setToken(token);
-    return response;
-  }).then(response => {console.log(response)}).catch();
-  
+  const handleNotification = (message, type) => { setNotify({ isOpen: 'true', message: message, type: type }); }
+
+  const handleSignIn = ({email, password}) => signIn(email, password).then((response) => {
+      handleNotification("Sucessfully signed in", 'success');
+      console.log(response.headers.get("Authorization"));
+      setToken(response.headers.get("Authorization"));
+    }).catch(response => { handleNotification("There was an error signing you in.", 'error') });
+
   return (
     <div className="App">
+      <Notification notify={notify} setNotify={setNotify} />
       <Router>
-        { signedIn ? <Redirect to="/admin" /> : null }
+        { signedIn ? <Redirect to="/admin" /> : <Redirect to="/" />  }
 
         <Switch>
-          <Route exact path="/">            <Home />            </Route>
-          <Route path="/about">             <About />           </Route>
-          <Route path="/faq">               <FAQ />           </Route>
-          <Route path="/timetable">               <Timetable />           </Route>
-          <Route path="/contact">               <Contact />           </Route>
-          <Route path="/pricing">               <Pricing />           </Route>
+          <Route exact path="/"><Home /></Route>
+          <Route path="/about"><About /></Route>
+          <Route path="/faq"><FAQ /></Route>
+          <Route path="/timetable"><Timetable /></Route>
+          <Route path="/contact"><Contact /></Route>
+          <Route path="/pricing"><Pricing /></Route>
+          <Route path="/blogs"><Blogs /></Route>
           <Route path="/admin/signin"><SignInForm onSignIn={handleSignIn} /></Route>
-          <Route path="/admin" render={() => (signedIn ? ( 
-          
-          <Router>
-          <Topbar />
-          <div className="container-admin-sidebar">
-            <Sidebar />
-            <Switch>
-              <Route exact path="/admin" render={requireAuth(() => (<AdminHome />))} />
-              <Route exact path="/admin/blogs" render={requireAuth(() => (<BlogList />))} />
-              <Route exact path="/admin/blogs/1/posts/new" render={requireAuth(() => (<NewBlog />))} />
-              <Route exact path="/admin/blogs/1/posts/:id" render={requireAuth((props) => (<Blog id={props.match.params.id} />))} />
-              <Route exact path="/admin/pricings" render={requireAuth(() => (<PricingList />))} />
-              <Route exact path="/admin/faqs" render={requireAuth(() => (<FaqList />))} />
-            </Switch>
-          </div>
-        </Router>
-            
-            ) : (<Redirect to="/admin/signin" />))}>
+          <Route path="/admin" render={() => (signedIn ? (
+            <Router>
+              <Topbar notification={handleNotification} />
+              <div className="container-admin-sidebar">
+                <Sidebar />
+                <Switch>
+                  <Route exact path="/admin" render={requireAuth(() => (<AdminHome />))} />
+                  <Route exact path="/admin/blogs" render={requireAuth(() => (<BlogList notification={handleNotification} />))} />
+                  <Route exact path="/admin/blogs/1/posts/new" render={requireAuth(() => (<NewBlog notification={handleNotification} />))} />
+                  <Route exact path="/admin/blogs/1/posts/:id" render={requireAuth((props) => (<Blog id={props.match.params.id} />))} />
+                  <Route exact path="/admin/pricings" render={requireAuth(() => (<PricingList notification={handleNotification} />))} />
+                  <Route exact path="/admin/faqs" render={requireAuth(() => (<FaqList notification={handleNotification} />))} />
+                </Switch>
+              </div>
+            </Router>
+          ) : (<Redirect to="/admin/signin" />))}>
           </Route>
         </Switch>
       </Router>

@@ -1,28 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Header from "./components/Header";
-import { API_URL } from "../api/auth";
-import { PhoneAndroid } from '@material-ui/icons';
-import axios from 'axios';
-// import { FacebookIcon, InstagramIcon } from "@material-ui/icons";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import "./contact.css";
 import Footer from './components/Footer';
 
-
 function Contact() {
-
-	const AnyReactComponent = ({ text }) => <div>{text}</div>;
-	const mapProps = {
-		center: {
-			lat: -33.920847,
-			lng: 151.258621
-		},
-		zoom: 11
-	}
-
-	// const Goog;
-
 	return (
 		<>
 			<Header />

@@ -3,36 +3,23 @@ import "./pricingList.css";
 import axios from 'axios';
 import PricingCard from './components/PricingCard';
 import NewPricingCard from './components/NewPricingCard';
-import Notification from '../components/notifications/Notification';
 
-export default function PricingList() {
+export default function PricingList({notification}) {
 	const API_URL = process.env.REACT_APP_API_URL;
 	const [plans, setPlans] = useState({});
 	const [passes, setPasses] = useState({});
 	const [newPlan, setNewPlan] = useState(false);
 	const [newPass, setNewPass] = useState(false);
 	const [update, setUpdate] = useState(false);
-	const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' })
 
 	const handleDelete = (endpoint, id) => {
 		setPlans(plans.filter(item => item.id !== id))
 		axios.delete(`${API_URL}/pricings/1/${endpoint}/${id}`)
 			.then(response => {
-				if (response.status >= 200 && response.status <= 300)
-					setNotify({
-						isOpen: true,
-						message: 'Pricing plan deleted successfully.',
-						type: 'success'
-					})
+				if (response.status >= 200 && response.status <= 300) notification('Pricing plan deleted successfully.','success');
 				else Promise.reject();
 			})
-			.catch(() => {
-				setNotify({
-					isOpen: true,
-					message: 'There was an error in deleting the pricing plan.',
-					type: 'error'
-				})
-			});
+			.catch(() => { notification('There was an error in deleting the pricing plan.','error'); });
 	}
 
 	const handleUpdate = (target, endpoint) => {
@@ -47,21 +34,10 @@ export default function PricingList() {
 			.then(response => {
 				if (response.status == 200) {
 					setUpdate(!update);
-					setNotify({
-						isOpen: true,
-						message: 'Pricing plan deleted successfully.',
-						type: 'success'
-					})
-				
+					notification('Pricing plan deleted successfully.','success');
 				} else Promise.reject();
 			})
-			.catch(() => {
-				setNotify({
-					isOpen: true,
-					message: 'There was an error in updating the pricing plan.',
-					type: 'error'
-				})
-			})
+			.catch(() => { notification('There was an error in updating the pricing plan.', 'error'); });
 	}
 
 	useEffect(() => {
@@ -76,7 +52,6 @@ export default function PricingList() {
 
 	return (
 		<div>
-			<Notification notify={notify} setNotify={setNotify} />
 			<h1 className="block text-2xl ml-0 mr-0 font-bold mb-6"> Pricings Page</h1>
 			<button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => { setNewPlan(true) }}>Create</button>
 			<div className="flex flex-row flex-wrap">
