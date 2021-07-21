@@ -50,7 +50,7 @@ function Pricing() {
 							{
 								(plans.length > 0) ? plans.map(plan => {
 									return (
-										<div className="border bg-gradient rounded-lg text-center p-5 mx-auto md:mx-0 my-2 md:my-6 bg-gray-100 font-medium z-10 shadow-lg">
+										<div className="border rounded-lg text-center p-5 mx-auto md:mx-0 my-2 md:my-6 bg-gray-100 font-medium z-10 shadow-lg">
 											<div className>{plan.name}</div>
 											<div id="annual" className="font-bold text-6xl mb-6 annual">${plan.price}</div><hr />
 											<div className="text-sm my-3">{plan.description}</div><hr />
@@ -58,7 +58,7 @@ function Pricing() {
 											<div className="text-sm my-3">{plan.session_times}</div><hr />
 											<Link to="/contact">
 												<div className="bg-gradient-base border border-blue-600 hover:bg-white text-white hover:text-blue-600 font-bold uppercase text-xs mt-5 py-2 px-4 rounded cursor-pointer">
-													Learn More
+													Contact Me
 												</div>
 											</Link>
 										</div>)
@@ -66,7 +66,7 @@ function Pricing() {
 							}
 						</div>
 						<div className="text-xl md:mt-24 md:mb-24 leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto mb-10">
-							You’ve got three packages to choose from:</div>
+							If you don't wish to commit to a membership, we also did class passes. You’ve got three packages to choose from:</div>
 
 						<div className="flex flex-row justify-center items-center">
 							{
@@ -96,7 +96,7 @@ function Pricing() {
 												<div className="mt-8 mb-8">
 													This option allows you to drop in to classes, as your schedule permits. All passes must be used within 4 months of purchase.</div>
 												<div className="py-4">
-													<Link to="/contact" className="block tracking-widest uppercase text-center shadow bg-blue-600 hover:bg-blue-700 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded">Learn More</Link>
+													<Link to="/contact" className="block tracking-widest uppercase text-center shadow bg-blue-600 hover:bg-blue-700 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded">Contact Me</Link>
 												</div>
 											</div>
 										</div>

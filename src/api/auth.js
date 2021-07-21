@@ -1,4 +1,4 @@
-const TOKEN_KEY = 'session_token';
+export const TOKEN_KEY = 'session_token';
 export const API_URL = process.env.REACT_APP_API_URL;
 
 export function signIn(email, password) {
@@ -22,6 +22,7 @@ export function signIn(email, password) {
 
 export function signOut() {
     const url = `${API_URL}/users/sign_out`;
+    const token = getToken();
     removeToken();
     return fetch(url, {
         method: 'DELETE',
@@ -29,7 +30,7 @@ export function signOut() {
         cache: 'no-cache',
         headers: {
             'Accept': 'application/json',
-            'Authorization': getToken()
+            'Authorization': token
             }
         }).then(response => {
             if (response.ok) return true;

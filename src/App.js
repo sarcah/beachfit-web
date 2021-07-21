@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Topbar from "./admin/components/topbar/Topbar"
 import Sidebar from "./admin/components/sidebar/Sidebar"
 import AdminHome from "./admin/home/Home";
@@ -8,9 +8,9 @@ import Blog from './admin/blog/Blog';
 import NewBlog from './admin/blogList/components/newBlog/NewBlog';
 import PricingList from "./admin/pricingList/PricingList";
 import FaqList from "./admin/faqList/FaqList";
-import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect, useLocation } from "react-router-dom";
 import SignInForm from './admin/components/SignInForm';
-import { signIn, getToken } from "./api/auth";
+import { signIn, getToken, TOKEN_KEY } from "./api/auth";
 import Home from "./front/Home";
 import About from "./front/About";
 import FAQ from './front/FAQ';
@@ -31,7 +31,6 @@ function App() {
 
   const handleSignIn = ({email, password}) => signIn(email, password).then((response) => {
       handleNotification("Sucessfully signed in", 'success');
-      console.log(response.headers.get("Authorization"));
       setToken(response.headers.get("Authorization"));
     }).catch(response => { handleNotification("There was an error signing you in.", 'error') });
 
