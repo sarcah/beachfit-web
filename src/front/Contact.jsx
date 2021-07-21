@@ -48,8 +48,8 @@ function Contact() {
 
 						<div className="text-center mb-20">
 							<p className="text-2xl md:mt-24 md:mb-24 leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto mb-10">And when we’re not running sessions on beautiful Coogee Beach, you can find us on &hellip;</p>
-							<a href="https://www.facebook.com/BeachFitAndWellbeing"><FacebookIcon className="socialMediaIcons text-blue-700 hover:text-blue-500" /></a>
-							<a href="https://instagram.com/beachfitandwellbeing/"><InstagramIcon className="socialMediaIcons intagramIcon" style={{ color: "#E4405F" }} /></a>
+							<a href="https://www.facebook.com/BeachFitAndWellbeing" target="_blank"><FacebookIcon className="socialMediaIcons text-blue-700 hover:text-blue-500" /></a>
+							<a href="https://instagram.com/beachfitandwellbeing/" target="_blank"><InstagramIcon className="socialMediaIcons intagramIcon" style={{ color: "#E4405F" }} /></a>
 						</div>
 					</div>
 				</div>

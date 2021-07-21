@@ -42,29 +42,18 @@ const Home = () => {
 
 
 					</div>
-					{/*/Lead Card*/}
-					{/*Posts Container*/}
-					Testimonials
-					<div className="flex flex-wrap justify-between pt-12 -mx-6">
-						{/*1/3 col */}
+
+					{/*Testimonials Container*/}
+					<div className="text-center mt-10 sm:text-3xl text-2xl font-medium title-font text-gray-900 ">Testimonials</div>
+					<div className="flex flex-wrap justify-between pt-6 -mx-6">
 						{
 							testimonials && testimonials.map(testimonial => {
 								return (
 									<div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
 										<div className="flex-1 bg-white rounded-t rounded-b-none shadow-lg">
-
-											<img
-												src="https://source.unsplash.com/collection/225/800x600"
-												className="h-64 w-full rounded-t pb-6" alt=""
-											/>
-
-											<div className="w-full font-bold text-xl text-gray-900 px-6">
-												{testimonial.name}
-											</div>
-											<p className="text-gray-800 text-sm px-6 mb-5">
-												{testimonial.body}
-											</p>
-
+											<img src="https://source.unsplash.com/collection/225/800x600" className="h-64 w-full rounded-t pb-6" alt="" />
+											<div className="w-full font-bold text-xl text-gray-900 px-6">{testimonial.name}</div>
+											<p className="text-gray-800 text-sm px-6 mb-5">{testimonial.body}</p>
 										</div>
 									</div>
 								)
@@ -74,29 +63,17 @@ const Home = () => {
 					{/*/ Post Content*/}
 				</div>
 
-				<table className="w-full table">
+				<table className="w-full table mt-20">
 					<tbody>
 						<tr className="bg-white">
 							<td className="p-0">
-								<div>
-									<div className="block w-5/12">
-										
-										
-											<img
-												src={idea}
-												height={512}
-												width={512}
-												style={{ width: "100%" }}
-											/>
-										
-									</div>
-								</div>
-								<div
-									className="wptb-text-container wptb-ph-element wptb-item-javascript-indic wptb-element-text-1"
-									style={{ fontSize: 18 }}
-								>
-									<div className style={{ position: "relative" }}>
-										<p style={{ textAlign: "center" }} className>
+								
+								
+								
+								<div className="text-xl">
+									<div className="relative">
+										<p className="text-center">
+										<img src={idea} className="mx-auto w-24" />
 											<strong>Inspiring</strong>
 											<br />
 											<br />
@@ -107,32 +84,12 @@ const Home = () => {
 									</div>
 								</div>
 							</td>
-							<td
-								className="wptb-cell"
-								data-x-index={1}
-								data-wptb-css-td-auto-width="true"
-								style={{ padding: 0 }}
-								data-y-index={0}
-							>
-								<div className="wptb-image-container wptb-ph-element wptb-item-javascript-indic wptb-element-image-1">
-									<div className="wptb-image-wrapper">
-										{" "}
-										<a style={{ display: "block", width: "24%" }} className>
-											<img
-												src={heart}
-												height={512}
-												width={512}
-												style={{ width: "100%" }}
-											/>
-										</a>{" "}
-									</div>
-								</div>
-								<div
-									className="wptb-text-container wptb-ph-element wptb-item-javascript-indic wptb-element-text-2"
-									style={{ fontSize: 18 }}
-								>
-									<div className style={{ position: "relative" }}>
-										<p style={{ textAlign: "center" }} className>
+							<td className="p-0">
+								
+								<div className="text-xl">
+									<div className="relative">
+										<p className="text-center">
+										<img src={heart} className="mx-auto w-24" />
 											<strong className>
 												<br />
 												Inclusive
@@ -147,17 +104,10 @@ const Home = () => {
 								</div>
 							</td>
 							<td className="p-0">
-								<div className="">
-									<div className="">
-										<a style={{ display: "block", width: "34%" }} className><img className="w-full" src={power} height={512} width={512} /></a>
-									</div>
-								</div>
-								<div
-									className="wptb-text-container wptb-ph-element wptb-item-javascript-indic wptb-element-text-3"
-									style={{ fontSize: 18 }}
-								>
-									<div className style={{ position: "relative" }}>
-										<p style={{ textAlign: "center" }}>
+								<div className="text-xl">
+									<div className="relative">
+										<p className="text-center">
+											<img src={power} className="mx-auto w-24" />
 											<strong>Innovative</strong>
 											<br />
 											<br />
@@ -200,7 +150,7 @@ const Home = () => {
 					</div>
 				</div>
 				{/* /Subscribe*/}
-				
+
 				<Footer />
 			</div>
 		</>
