@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 import InstagramIcon from "@material-ui/icons/Instagram";
 import FacebookIcon from "@material-ui/icons/Facebook";
+import Navlink from "./Navlink";
 
 function Navbar() {
 	return (
@@ -11,33 +11,22 @@ function Navbar() {
 					<div className="container mx-auto flex items-center bg-white">
 						<div className="flex w-1/2 pl-4 text-sm">
 							<ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
-								<li className="mr-2">
-									<Link className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" to="/about">About</Link>
-								</li>
-								<li className="mr-2">
-									<Link className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" to="/contact">Contact</Link>
-								</li>
-								<li className="mr-2">
-									<Link className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" to="/faq">FAQ</Link>
-								</li>
-								<li className="mr-2">
-									<Link className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" to="/timetable">Timetable</Link>
-								</li>
-								<li className="mr-2">
-									<Link className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" to="/pricing">Pricing</Link>
-								</li>
-								<li className="mr-2">
-									<Link className="inline-block py-2 sm:px-2 px-1 text-black no-underline hover:underline" to="/blogs">Blogs</Link>
-								</li>
+								<Navlink linkTo="/" linkText="Home" />
+								<Navlink linkTo="/about" linkText="About" />
+								<Navlink linkTo="/contact" linkText="Contact" />
+								<Navlink linkTo="/faq" linkText="FAQ" />
+								<Navlink linkTo="/timetable" linkText="Timetable" />
+								<Navlink linkTo="/pricing" linkText="Pricing" />
+								<Navlink linkTo="/blogs" linkText="Blogs" />
 							</ul>
 						</div>
 						<div className="flex w-1/2 justify-end content-center">
 							<a className="inline-block text-gray-700 no-underline hover:text-gray-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 avatar"
-								 href="https://www.facebook.com/BeachFitAndWellbeing" target="_blank">
+								href="https://www.facebook.com/BeachFitAndWellbeing" target="_blank">
 								<FacebookIcon className="fill-current h-4" />
 							</a>
 							<a className="inline-block text-gray-700 no-underline hover:text-gray-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 avatar"
-								 href="https://instagram.com/beachfitandwellbeing/" target="_blank">
+								href="https://instagram.com/beachfitandwellbeing/" target="_blank">
 								<InstagramIcon className="fill-current h-4" />
 							</a>
 						</div>

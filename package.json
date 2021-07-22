@@ -13,8 +13,13 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "aws-sdk": "^2.951.0",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
+    "jwt-decode": "^3.1.2",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "path": "^0.12.7",
     "ra-data-simple-rest": "^3.16.0",
     "react": "^17.0.2",
     "react-admin": "^3.16.6",
@@ -27,6 +32,7 @@
     "react-scripts": "4.0.3",
     "recharts": "^2.0.9",
     "styled-components": "^5.3.0",
+    "url": "^0.11.0",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

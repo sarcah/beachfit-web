@@ -5,6 +5,7 @@ import { DeleteOutline } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from "../../api/auth.js";
+import WidgetLg from '../components/widgetLg/WidgetLg';
 
 export default function BlogList({notification}) {
 	const [data, setData] = useState([]);
@@ -65,6 +66,7 @@ export default function BlogList({notification}) {
 				(data.length > 0) ?
 					<DataGrid rows={data} disableSelectionOnClick autoHeight columns={columns} pageSize={10} checkboxSelection /> : <div>Loading &hellip;</div>
 			}
+			<WidgetLg data={data} onDelete={handleDelete} />
 		</div>
 	)
 }

@@ -58,7 +58,7 @@ function App() {
                   <Route exact path="/admin" render={requireAuth(() => (<AdminHome />))} />
                   <Route exact path="/admin/blogs" render={requireAuth(() => (<BlogList notification={handleNotification} />))} />
                   <Route exact path="/admin/blogs/1/posts/new" render={requireAuth(() => (<NewBlog notification={handleNotification} />))} />
-                  <Route exact path="/admin/blogs/1/posts/:id" render={requireAuth((props) => (<Blog id={props.match.params.id} />))} />
+                  <Route exact path="/admin/blogs/1/posts/:id" render={requireAuth((props) => (<Blog id={props.match.params.id} notification={handleNotification} />))} />
                   <Route exact path="/admin/pricings" render={requireAuth(() => (<PricingList notification={handleNotification} />))} />
                   <Route exact path="/admin/faqs" render={requireAuth(() => (<FaqList notification={handleNotification} />))} />
                 </Switch>

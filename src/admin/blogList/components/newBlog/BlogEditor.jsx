@@ -8,11 +8,15 @@ import { Redirect } from 'react-router-dom';
 import Notification from '../../../components/notifications/Notification';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlParser2 } from 'react-html-parser';
 
-function BlogEditor({ action, id, title, body }) {
+function BlogEditor({ action, id, title, body, notification }) {
+	
 	const [value, setValue] = useState(body);
 	const [text, setText] = useState(title);
 	const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' });
 	const [created, setCreated] = useState(false);
+	const [file, setFile] = useState(null);
+
+	console.log(body);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -28,40 +32,20 @@ function BlogEditor({ action, id, title, body }) {
 			axios.post(`${API_URL}/blogs/1/posts`, formData)
 				.then(response => {
 					if (response.status >= 200 && response.status <= 300) {
-						setNotify({
-							isOpen: true,
-							message: 'Blog post created successfully.',
-							type: 'success'
-						});
-						setTimeout(() => { setCreated(true) }, 1000);
+						notification('Blog post created successfully.','success');
+						setCreated(true);
 					} else Promise.reject();
 				})
-				.catch(() => {
-					setNotify({
-						isOpen: true,
-						message: 'There was an error in creating your blog post. Your data was not saved.',
-						type: 'error'
-					})
-				});
+				.catch(() => { notification('There was an error in creating your blog post. Your data was not saved.','error') });
 		} else {
 			axios.patch(`${API_URL}/blogs/1/posts/${id}`, formData)
 				.then(response => {
 					if (response.status >= 200 && response.status <= 300) {
-						setNotify({
-							isOpen: true,
-							message: 'Blog post updated successfully.',
-							type: 'success'
-						});
-						setTimeout(() => { setCreated(true) }, 1000);
+						notification('Blog post updated successfully.','success');
+						setCreated(true);
 					} else Promise.reject();
 				})
-				.catch(() => {
-					setNotify({
-						isOpen: true,
-						message: 'There was an error in updating your blog post. Your data was not saved.',
-						type: 'error'
-					})
-				});
+				.catch(() => { notification('There was an error in updating your blog post. Your data was not saved.','error') });
 		}
 	}
 
@@ -70,9 +54,18 @@ function BlogEditor({ action, id, title, body }) {
 		setText(event.target.value);
 	}
 
-	const handleChange = (event, editor) => {
-		const editorData = editor.getData();
-		setValue(editorData);
+	const handleUpload = async (event) => {
+		const file = event.target.files[0];
+		if (!file) return;
+		setFile({ loading: true });
+
+		const payload = await fetch(`${API_URL}/s3/direct_post`).then(response => response.json());
+
+		const url = payload.url;
+		const formData = new FormData();
+
+		
+		
 	}
 
 	return (
@@ -100,7 +93,8 @@ function BlogEditor({ action, id, title, body }) {
 										Content <span className="text-red-500">*</span>
 									</label>
 									<br />
-									<CKEditor editor={ClassicEditor} data={value} onChange={handleChange} />
+									<textarea className="border-2 border-gray-300 p-2 w-full h-full" value={value} onChange={handleTextChange} />
+									<input type="file" onChange={handleUpload} />
 								</div>
 							</div>
 						</div>
