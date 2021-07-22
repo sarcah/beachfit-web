@@ -20,7 +20,7 @@ function Timetable() {
 									Session Timetable
 								</h1>
 								<p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto mb-10">
-									Please e-mail any questions to <a className="hover:underline hover:text-red-800 font-bold" href="mailto: info@beachfitandwellbeing.com">info@beachfitandwellbeing.com</a>
+									Please email any questions to <a className="hover:underline hover:text-red-800 font-bold" href="mailto: info@beachfitandwellbeing.com">info@beachfitandwellbeing.com</a>
 								</p>
 								Alternatively call or text on <span className="font-bold">0410 068 060</span>
 							</div>

@@ -66,7 +66,7 @@ function Pricing() {
 							}
 						</div>
 						<div className="text-xl md:mt-24 md:mb-24 leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto mb-10">
-							If you don't wish to commit to a membership, we also did class passes. You’ve got three packages to choose from:</div>
+							If you don't wish to commit to a membership, we also do class passes. You’ve got three packages to choose from:</div>
 
 						<div className="flex flex-row justify-center items-center">
 							{
