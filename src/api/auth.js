@@ -1,5 +1,8 @@
+import JWTDecode from "jwt-decode";
+
 export const TOKEN_KEY = 'session_token';
 export const API_URL = process.env.REACT_APP_API_URL;
+
 
 export function signIn(email, password) {
     const url = `${API_URL}/users/sign_in`;
@@ -42,7 +45,17 @@ export function signOut() {
 }
 
 export function getToken() {
-    return localStorage.getItem(TOKEN_KEY);
+    const token = localStorage.getItem(TOKEN_KEY);
+    try {
+        const decodedToken = JWTDecode(token);
+        const now = Date.now() / 1000;
+
+        if (now > decodedToken.exp) return null;
+        else return token;
+
+    } catch (error) {
+        return null;
+    }
 }
 
 function setToken(response) {

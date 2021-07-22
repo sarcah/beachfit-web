@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import "./sidebar.css";
-import { LineStyle, Timeline, TrendingUp } from "@material-ui/icons";
+import { LineStyle } from "@material-ui/icons";
 import { Link, useLocation } from "react-router-dom";
 
 export default function SideBarLink({ linkTo, linkText }) {
