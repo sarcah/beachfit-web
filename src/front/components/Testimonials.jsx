@@ -15,7 +15,6 @@ function Testimonials() {
 		<div className="flex flex-wrap justify-between pt-6 -mx-6">
 			{
 				testimonials && testimonials.map(testimonial => {
-					console.log(testimonial);
 					return (
 						<div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
 							<div className="flex-1 bg-white rounded-t rounded-b-none shadow-lg">

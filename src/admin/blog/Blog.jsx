@@ -16,6 +16,7 @@ export default function Blog({id, notification}) {
 	}, []);
 
 	return (
-		<BlogEditor id={id} title={data.title} body={data.body} notification={notification} />
+		data ? 
+		<BlogEditor id={id} title={data.title} body={data.body} notification={notification} /> : null
 	);
 }

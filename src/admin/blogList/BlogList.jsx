@@ -66,7 +66,6 @@ export default function BlogList({notification}) {
 				(data.length > 0) ?
 					<DataGrid rows={data} disableSelectionOnClick autoHeight columns={columns} pageSize={10} checkboxSelection /> : <div>Loading &hellip;</div>
 			}
-			<WidgetLg data={data} onDelete={handleDelete} />
 		</div>
 	)
 }

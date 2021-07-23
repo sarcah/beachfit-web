@@ -1,7 +1,6 @@
 import FaqItem from "./FaqItem";
 import { act } from "react-dom/test-utils"
 import { render, screen } from "@testing-library/react";
-import { StaticRouter as Router } from "react-router-dom";
 import { expect } from "@jest/globals";
 
 describe('FAQItem', () => {
@@ -15,12 +14,10 @@ describe('FAQItem', () => {
 		});
 
 		await act(async () => {
-			const product = render(<Router><FaqItem data={fakeItem} /></Router>);
-			expect(product).getByRole("PricingID").toBeInTheDocument();
+			const faqItem = render(<FaqItem data={fakeItem} />);
+			expect(faqItem.getByText(/Test question/i)).toBeInTheDocument();
 		});
 
-		expect(screen.getByText(/Test question/i)).toBeInTheDocument();
-	
 		// screen.debug();
 		spy.mockRestore();
 	})

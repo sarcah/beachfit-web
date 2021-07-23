@@ -13,7 +13,6 @@ export default function PricingCard({ type, data, onUpdate, onDelete }) {
 	let card = (<></>);
 
 	const handleEdit = (event) => {
-		console.log("handle edit ", event)
 		event.preventDefault();
 		setEdit(!edit);
 	}
