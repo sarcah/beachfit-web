@@ -3,7 +3,7 @@ import { act } from "react-dom/test-utils"
 import { render, screen } from "@testing-library/react";
 import { expect } from "@jest/globals";
 
-describe('PricingCard', () => {
+describe('Pricing Card', () => {
 	it('renders the Pricing Card Item', async () => {
 		const fakePlan = {  id: 1, name: "Fake plan", price: 66, session_times: "Fake session times", sessions_per_week: "Fake sessions per week" }
 		const handleDummy = () => { return "Dummy function" }

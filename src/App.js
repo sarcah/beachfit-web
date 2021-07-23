@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Topbar from "./admin/components/topbar/Topbar"
 import Sidebar from "./admin/components/sidebar/Sidebar"
 import AdminHome from "./admin/home/Home";
@@ -18,7 +18,6 @@ import Timetable from './front/Timetable';
 import Contact from './front/Contact';
 import Pricing from './front/Pricing';
 import Blogs from "./front/Blogs";
-import AdminRoutes from "./AdminRoutes.jsx";
 import Notification from './admin/components/notifications/Notification';
 
 
