@@ -7,7 +7,7 @@ import Navbar from "./Navbar";
 const Header = () => {
   return (
     <div className="bg-blue-200 font-sans leading-normal tracking-normal">
-      <div className="w-full flex justify-center align-center text-center content-center"><Link to="/" className="mt-8 absolute"><img src={beachfitLogo} title="BeachFit & Wellbeing" /></Link></div>
+      <div className="w-full flex justify-center align-center text-center content-center"><Link to="/" className="mt-8 absolute"><img alt="Header" src={beachfitLogo} title="BeachFit & Wellbeing" /></Link></div>
       <div className="w-full m-0 p-0 bg-cover bg-bottom" style={{
         backgroundImage: `url(${background})`,
         backgroundSize: "100%",

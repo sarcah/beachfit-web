@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Header from "./components/Header";
-import { API_URL } from "../api/auth";
-import { PhoneAndroid } from '@material-ui/icons';
-import axios from 'axios';
 import Footer from './components/Footer';
-
 
 function Timetable() {
 

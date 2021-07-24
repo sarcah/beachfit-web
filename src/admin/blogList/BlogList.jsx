@@ -5,7 +5,6 @@ import { DeleteOutline } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from "../../api/auth.js";
-import WidgetLg from '../components/widgetLg/WidgetLg';
 
 export default function BlogList({notification}) {
 	const [data, setData] = useState([]);

@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import "./newBlog.css";
 import { API_URL } from "../../../../api/auth";
 import { Redirect } from 'react-router-dom';
-import Notification from '../../../components/notifications/Notification';
 
 function BlogEditor({ action, id, title, body, notification }) {
 
-	const [value, setValue] = useState(body);
-	const [text, setText] = useState(title);
-	const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' });
+	const [text, setText] = useState({ title: title, body: body });
 	const [created, setCreated] = useState(false);
 	const [file, setFile] = useState(null);
 
@@ -19,7 +16,7 @@ function BlogEditor({ action, id, title, body, notification }) {
 		const target = event.target;
 		const formData = {
 			title: target.title.value,
-			body: value,
+			body: target.body.value,
 			blog_id: 1
 		}
 
@@ -45,6 +42,7 @@ function BlogEditor({ action, id, title, body, notification }) {
 	}
 
 	const handleTextChange = (event) => {
+		console.log(event.target.value)
 		event.preventDefault();
 		setText(event.target.value);
 	}
@@ -64,7 +62,7 @@ function BlogEditor({ action, id, title, body, notification }) {
 				<div className="blogUpdate">
 					<form onSubmit={(event) => { handleSubmit(event) }} className="newBlogForm flex-col">
 						{created ? <Redirect to="/admin/blogs" /> : <></>}
-						<Notification notify={notify} setNotify={setNotify} />
+						
 						<div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
 							<div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 								<div className="mb-4">
@@ -72,14 +70,14 @@ function BlogEditor({ action, id, title, body, notification }) {
 										Title <span className="text-red-500">*</span>
 									</label>
 									<br />
-									<input type="text" className="border-2 border-gray-300 p-2 w-full" value={title} onChange={handleTextChange} name="title" required />
+									<input type="text" className="border-2 border-gray-300 p-2 w-full" value={text.title} onChange={handleTextChange} name="title" required />
 								</div>
 								<div className="mb-8">
 									<label className="text-xl text-gray-600">
 										Content <span className="text-red-500">*</span>
 									</label>
 									<br />
-									<textarea className="border-2 border-gray-300 p-2 w-full h-full" value={value} name="body" onChange={handleTextChange} />
+									<textarea className="border-2 border-gray-300 p-2 w-full h-full" value={text.body} name="body" onChange={handleTextChange} />
 									<input type="file" onChange={handleUpload} />
 								</div>
 							</div>

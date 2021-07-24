@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Header from "./components/Header";
-import S3FileUpload from "react-s3";
 import Footer from './components/Footer';
 import IdeasTable from './components/IdeasTable';
 import LeadCard from './components/LeadCard';

@@ -12,7 +12,7 @@ function IdeasTable() {
 						<div className="text-xl">
 							<div className="relative">
 								<p className="text-center">
-									<img src={idea} className="mx-auto w-24" />
+									<img alt="ideas" src={idea} className="mx-auto w-24" />
 									<strong>Inspiring</strong>
 									<br />
 									<br />
@@ -27,7 +27,7 @@ function IdeasTable() {
 						<div className="text-xl">
 							<div className="relative">
 								<p className="text-center">
-									<img src={heart} className="mx-auto w-24" />
+									<img alt="ideas" src={heart} className="mx-auto w-24" />
 									<strong><br />Inclusive</strong>
 									<br />
 									<br />
@@ -42,7 +42,7 @@ function IdeasTable() {
 						<div className="text-xl">
 							<div className="relative">
 								<p className="text-center">
-									<img src={power} className="mx-auto w-24" />
+									<img alt="ideas" src={power} className="mx-auto w-24" />
 									<strong>Innovative</strong>
 									<br />
 									<br />
