@@ -23,6 +23,7 @@ export default function BlogList({notification}) {
 		axios.get(`${API_URL}/blogs/1/posts`)
 			.then(response => {
 				setData(response.data)
+				console.log(response.data)
 			})
 			.catch(() => { notification('There was an error in getting blog post data.', 'error') })
 	}, []);
@@ -32,7 +33,7 @@ export default function BlogList({notification}) {
 			field: 'title', headerName: 'Title', width: 180, renderCell: (params) => {
 				return (
 					<div className="userListUser">
-						<img src={params.row.avatar} alt="" className="userListImg" />
+						<img src={params.row.image_url} alt="" className="userListImg" />
 						{params.row.title}
 					</div>
 				)
