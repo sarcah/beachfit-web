@@ -32,7 +32,6 @@ export default function BlogList({notification}) {
 			field: 'title', headerName: 'Title', width: 180, renderCell: (params) => {
 				return (
 					<div className="userListUser">
-						{console.log(params.row)}
 						<img src={params.row.image_url} alt="" className="userListImg" />
 						{params.row.title}
 					</div>

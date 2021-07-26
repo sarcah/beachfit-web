@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import axios from 'axios';
 import { API_URL } from "../api/auth";
 
-function Blog({ id }) {
+function BlogPost({ id }) {
 
 	const [blog, setBlog] = useState(null);
 
@@ -51,10 +51,6 @@ function Blog({ id }) {
 									<div className="w-full lg:w-1/4 m-auto mt-12 max-w-screen-sm">
 										<div className="p-4 border-t border-b md:border md:rounded">
 											<div className="flex py-2">
-												<img
-													src="https://randomuser.me/api/portraits/men/97.jpg"
-													className="h-10 w-10 rounded-full mr-2 object-cover"
-												/>
 												<div>
 													<p className="font-semibold text-gray-700 text-sm">Yvonne Dallman</p>
 													<p className="font-semibold text-gray-600 text-xs"> Fitness Trainer </p>
@@ -79,4 +75,4 @@ function Blog({ id }) {
 	)
 }
 
-export default Blog;
+export default BlogPost;

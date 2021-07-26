@@ -10193,13 +10193,6 @@ ra-core@^3.16.5:
     query-string "^5.1.1"
     reselect "~3.0.0"
 
-ra-data-simple-rest@^3.16.0:
-  version "3.16.0"
-  resolved "https://registry.npmjs.org/ra-data-simple-rest/-/ra-data-simple-rest-3.16.0.tgz"
-  integrity sha512-v3+QAU0EhicQHHLpQGTRQHBRODPaefI3s4y1eFfthaQHdtdNxbf2SnMU00tbHP2kGgzJWoWc38/cc6oqOqETlw==
-  dependencies:
-    query-string "^5.1.1"
-
 ra-i18n-polyglot@^3.16.5:
   version "3.16.5"
   resolved "https://registry.npmjs.org/ra-i18n-polyglot/-/ra-i18n-polyglot-3.16.5.tgz"
@@ -10344,14 +10337,6 @@ react-dom@^17.0.2:
     object-assign "^4.1.1"
     scheduler "^0.20.2"
 
-react-draggable@^4.4.3:
-  version "4.4.3"
-  resolved "https://registry.npmjs.org/react-draggable/-/react-draggable-4.4.3.tgz"
-  integrity sha512-jV4TE59MBuWm7gb6Ns3Q1mxX8Azffb7oTtDtBgFkxRvhDp38YAARmRplrj0+XGkhOJB5XziArX+4HUUABtyZ0w==
-  dependencies:
-    classnames "^2.2.5"
-    prop-types "^15.6.0"
-
 react-dropzone@^10.1.7:
   version "10.2.2"
   resolved "https://registry.npmjs.org/react-dropzone/-/react-dropzone-10.2.2.tgz"
@@ -10386,11 +10371,6 @@ react-html-parser@^2.0.2:
   integrity sha512-XeerLwCVjTs3njZcgCOeDUqLgNIt/t+6Jgi5/qPsO/krUWl76kWKXMeVs2LhY2gwM6X378DkhLjur0zUQdpz0g==
   dependencies:
     htmlparser2 "^3.9.0"
-
-react-instagram-login@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/react-instagram-login/-/react-instagram-login-1.4.0.tgz#c2419d1569a0144f0220de17e0fc3294545218ae"
-  integrity sha512-iXVYm7bvHdVsjNOmCvHDbf3DIegYg/wH2khL8nA1LGAd5WoTcauOwaZNzMtQkRm4jkfbmbUORPV4fa7kEL4bnw==
 
 react-is@16.10.2:
   version "16.10.2"

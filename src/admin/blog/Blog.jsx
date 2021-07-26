@@ -4,19 +4,22 @@ import axios from 'axios';
 import { API_URL } from "../../api/auth.js";
 import BlogEditor from '../blogList/components/newBlog/BlogEditor';
 
+export const BLOG_ACTION = {
+	new: "NEW",
+	update: "UPDATE"
+}
 
 export default function Blog({id, notification}) {
-	const [data, setData] = useState([]);
+	const [blogData, setBlogData] = useState(null);
 
 	useEffect(() => {
 		axios.get(`${API_URL}/blogs/1/posts/${id}`)
-			.then(response => {
-				setData(response.data)
-			}).catch();
+			.then(response => { setBlogData(response.data) })
+			.catch();
 	}, []);
 
 	return (
-		data ? 
-		<BlogEditor id={id} title={data.title} body={data.body} notification={notification} /> : null
+		blogData ? 
+		(<BlogEditor data={blogData} action={BLOG_ACTION.update} notification={notification} />) : null
 	);
 }

@@ -14,18 +14,35 @@ export default function NewPricingCard({ type, data, onCreate, onCancel }) {
 		setValue(event.target.value);
 	}
 
-	const handleSubmit = (event) => {
+	const handleSubmit = (event, type) => {
 		event.preventDefault();
 		const target = event.target;
-		const formData = {
-			name: target.name.value,
-			price: target.price.value,
-			description: target.description.value,
-			sessions_per_week: target.sessions_per_week.value,
-			session_times: target.session_times.value,
-			pricing_id: 1
+		let formData;
+		
+		switch(type) {
+			case PRICING_TYPE.plan:
+				formData = {
+					name: target.name.value,
+					price: target.price.value,
+					description: target.description.value,
+					sessions_per_week: target.sessions_per_week.value,
+					session_times: target.session_times.value,
+					pricing_id: 1
+				}
+			break;
+
+			case PRICING_TYPE.pass:
+				formData = {
+					name: target.name.value,
+					total_cost: target.total_cost.value,
+					class_cost: target.class_cost.value,
+					pricing_id: 1
+				}
+			break;
 		}
-		axios.post(`${API_URL}/pricings/1/plans/${target.id.value}`, formData)
+
+		
+		axios.post(`${API_URL}/pricings/1/${type}`, formData)
 			.then(response => {
 				if (response.status == 201) onCreate(true);
 				else Promise.reject()
@@ -36,7 +53,7 @@ export default function NewPricingCard({ type, data, onCreate, onCancel }) {
 	switch (type) {
 		case PRICING_TYPE.plan:
 			card = (
-				<form onSubmit={(event) => { handleSubmit(event) }} className="flex flex-col p-8 rounded-lg mb-8 bg-white border-2 bg-opacity-20 shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5 flex-shrink-0">
+				<form onSubmit={(event) => { handleSubmit(event, PRICING_TYPE.plan) }} className="flex flex-col p-8 rounded-lg mb-8 bg-white border-2 bg-opacity-20 shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5 flex-shrink-0">
 					<div className="flex justify-between">
 						<input type="hidden" name="id" value={value.id} />
 						<span className="featuredTitle">
@@ -67,7 +84,7 @@ export default function NewPricingCard({ type, data, onCreate, onCancel }) {
 
 		case PRICING_TYPE.pass:
 			card = (
-				<form onSubmit={(event) => { handleSubmit(event) }} className="flex flex-col p-8 rounded-lg mb-8 bg-white border-2 bg-opacity-20 shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5 flex-shrink-0">
+				<form onSubmit={(event) => { handleSubmit(event, PRICING_TYPE.pass) }} className="flex flex-col p-8 rounded-lg mb-8 bg-white border-2 bg-opacity-20 shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5 flex-shrink-0">
 					<div className="flex justify-between">
 						<input type="hidden" name="id" value={value.id} />
 						<span className="featuredTitle">
@@ -78,10 +95,10 @@ export default function NewPricingCard({ type, data, onCreate, onCancel }) {
 						</div>
 					</div>
 					<div className="featuredMoneyContainer">
-						<span className="w-full"><input name="price" placeholder="Enter a descriptive statement, e.g. '$100 for 10 classes' " type="text" style={{ width: "30rem" }} value={value.total_cost} onChange={handleChange} /></span>
+						<span className="w-full"><input name="total_cost" placeholder="Enter a descriptive statement, e.g. '$100 for 10 classes' " type="text" style={{ width: "30rem" }} value={value.total_cost} onChange={handleChange} /></span>
 					</div>
 					<span className="featuredSub">
-						<input name="sessions_per_week" className="w-full" placeholder="(Optional) Enter individual descriptive price, e.g. '$28 per class'" type="text" value={value.class_cost} onChange={handleChange} />
+						<input name="class_cost" className="w-full" placeholder="(Optional) Enter individual descriptive price, e.g. '$28 per class'" type="text" value={value.class_cost} onChange={handleChange} />
 					</span>
 					<br />
 					<button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="submit">Create</button>
