@@ -46,13 +46,13 @@ function Pricing() {
 						</div> */}
 
 
-						<div className="flex flex-col md:flex-row md:transform md:scale-75 lg:scale-100 justify-center">
+						<div data-testid="annual" className="flex flex-col md:flex-row md:transform md:scale-75 lg:scale-100 justify-center">
 							{
 								(plans.length > 0) ? plans.map(plan => {
 									return (
 										<div className="border rounded-lg text-center p-5 mx-auto md:mx-0 my-2 md:my-6 bg-gray-100 font-medium z-10 shadow-lg">
 											<div className>{plan.name}</div>
-											<div id="annual" className="font-bold text-6xl mb-6 annual">${plan.price}</div><hr />
+											<div className="font-bold text-6xl mb-6 annual">${plan.price}</div><hr />
 											<div className="text-sm my-3">{plan.description}</div><hr />
 											<div className="text-sm my-3">{plan.sessions_per_week}</div><hr />
 											<div className="text-sm my-3">{plan.session_times}</div><hr />

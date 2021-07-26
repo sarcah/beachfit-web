@@ -1,5 +1,5 @@
 import React from 'react';
-import heroImage from "../img/GMQtRz5w.jpeg"
+import heroImage from "../img/homepage_image.jpeg"
 
 function LeadCard() {
 	return (
@@ -15,7 +15,7 @@ function LeadCard() {
 				</div>
 			</div>
 			<div className="w-full rounded-t">
-				<img src={heroImage} className="h-full w-full shadow" />
+				<img src={heroImage} alt="BeachFit" className="h-full w-full shadow" />
 			</div>
 		</div>
 	)

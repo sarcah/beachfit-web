@@ -3,10 +3,10 @@ import { render, screen } from "@testing-library/react";
 import { describe } from "yargs";
 
 
-describe('PricingList', () => {
+describe('Pricing list', () => {
 	it('should show loading', () => {
 		render(<PricingList />);
-		const text = screen.getByText(/Create/i);
+		const text = screen.getByText(/Loading/i);
 		expect(text).toBeInTheDocument();
 	});
 
@@ -21,7 +21,7 @@ describe('PricingList', () => {
 	})
 });
 
-test('renders learn react link', () => {
+test('Render the create button', () => {
 	render(<PricingList />);
 	const button = screen.getByText(/Create/i);
 	expect(button).toBeInTheDocument();

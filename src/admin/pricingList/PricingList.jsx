@@ -4,6 +4,11 @@ import axios from 'axios';
 import PricingCard from './components/PricingCard';
 import NewPricingCard from './components/NewPricingCard';
 
+export const PRICING_TYPE = {
+	plan: "PLAN",
+	pass: "PASS"
+}
+
 export default function PricingList({notification}) {
 	const API_URL = process.env.REACT_APP_API_URL;
 	const [plans, setPlans] = useState({});
@@ -11,6 +16,8 @@ export default function PricingList({notification}) {
 	const [newPlan, setNewPlan] = useState(false);
 	const [newPass, setNewPass] = useState(false);
 	const [update, setUpdate] = useState(false);
+
+	
 
 	const handleDelete = (endpoint, id) => {
 		setPlans(plans.filter(item => item.id !== id))
@@ -34,7 +41,7 @@ export default function PricingList({notification}) {
 			.then(response => {
 				if (response.status == 200) {
 					setUpdate(!update);
-					notification('Pricing plan deleted successfully.','success');
+					notification('Pricing plan updated successfully.','success');
 				} else Promise.reject();
 			})
 			.catch(() => { notification('There was an error in updating the pricing plan.', 'error'); });
@@ -53,13 +60,20 @@ export default function PricingList({notification}) {
 	return (
 		<div>
 			<h1 className="block text-2xl ml-0 mr-0 font-bold mb-6"> Pricings Page</h1>
-			<button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => { setNewPlan(true) }}>Create</button>
+			<button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 mr-4 rounded" onClick={() => { setNewPlan(true) }}>Create a Membership Plan</button>
+			<button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 mr-4 rounded" onClick={() => { setNewPass(true) }}>Create a Class Pass</button>
 			<div className="flex flex-row flex-wrap">
-				{newPlan ? <NewPricingCard type="plans" onCreate={() => { setNewPlan(false) }} onCancel={() => { setNewPlan(false) }} /> : <></>}
+				{newPlan ? <NewPricingCard type={PRICING_TYPE.plan} onCreate={() => { setNewPlan(false) }} onCancel={() => { setNewPlan(false) }} /> : <></>}
+				{newPass ? <NewPricingCard type={PRICING_TYPE.pass} onCreate={() => { setNewPass(false) }} onCancel={() => { setNewPass(false) }} /> : <></>}
 				{
 					(plans.length > 0) ? <>{
-						plans.map(plan => <PricingCard type="plans" data={plan} onUpdate={(target) => handleUpdate(target, "plans")} onDelete={() => handleDelete("plans", plan.id)} />)
+						plans.map(plan => <PricingCard type={PRICING_TYPE.plan} data={plan} onUpdate={(target) => handleUpdate(target, "plans")} onDelete={() => handleDelete("plans", plan.id)} />)
 					}</> : <>You have no Plans.</>
+				}
+				{
+					(passes.length > 0) ? <>{
+						passes.map(pass => <PricingCard type={PRICING_TYPE.pass} data={pass} onUpdate={(target) => handleUpdate(target, "passes")} onDelete={() => handleDelete("passes", pass.id)} />)
+					}</> : <>You have no Passes.</>
 				}
 
 			</div>

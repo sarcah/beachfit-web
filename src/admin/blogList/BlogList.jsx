@@ -5,7 +5,6 @@ import { DeleteOutline } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from "../../api/auth.js";
-import WidgetLg from '../components/widgetLg/WidgetLg';
 
 export default function BlogList({notification}) {
 	const [data, setData] = useState([]);
@@ -33,13 +32,14 @@ export default function BlogList({notification}) {
 			field: 'title', headerName: 'Title', width: 180, renderCell: (params) => {
 				return (
 					<div className="userListUser">
-						<img src={params.row.avatar} alt="" className="userListImg" />
+						{console.log(params.row)}
+						<img src={params.row.image_url} alt="" className="userListImg" />
 						{params.row.title}
 					</div>
 				)
 			}
 		},
-		{ field: 'body', headerName: 'Body', width: 360 },
+		{ field: 'body', headerName: 'Body', width: "40rem" },
 		{
 			field: "action",
 			headerName: "Action",
@@ -64,9 +64,8 @@ export default function BlogList({notification}) {
 			<Link to="/admin/blogs/1/posts/new"><button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Create</button></Link>
 			{
 				(data.length > 0) ?
-					<DataGrid rows={data} disableSelectionOnClick autoHeight columns={columns} pageSize={10} checkboxSelection /> : <div>Loading &hellip;</div>
+					<DataGrid rows={data} disableSelectionOnClick autoHeight columns={columns} pageSize={10} /> : <div>Loading &hellip;</div>
 			}
-			<WidgetLg data={data} onDelete={handleDelete} />
 		</div>
 	)
 }

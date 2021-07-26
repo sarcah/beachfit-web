@@ -1,6 +1,6 @@
 import React from 'react'
 import InstagramIcon from "@material-ui/icons/Instagram";
-import FacebookIcon from "@material-ui/icons/Facebook";
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import Navlink from "./Navlink";
 
 function Navbar() {
@@ -22,11 +22,11 @@ function Navbar() {
 						</div>
 						<div className="flex w-1/2 justify-end content-center">
 							<a className="inline-block text-gray-700 no-underline hover:text-gray-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 avatar"
-								href="https://www.facebook.com/BeachFitAndWellbeing" target="_blank">
-								<FacebookIcon className="fill-current h-4" />
+								href="mailto:yvonnedallman@hotmail.co.uk" target="_blank" rel="noreferrer">
+								<MailOutlineIcon className="fill-current h-4" />
 							</a>
 							<a className="inline-block text-gray-700 no-underline hover:text-gray-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 avatar"
-								href="https://instagram.com/beachfitandwellbeing/" target="_blank">
+								href="https://instagram.com/beachfitandwellbeing/" target="_blank" rel="noreferrer">
 								<InstagramIcon className="fill-current h-4" />
 							</a>
 						</div>

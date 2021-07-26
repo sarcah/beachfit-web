@@ -27,7 +27,7 @@ export default function FaqItem({ data, onUpdate, onDelete }) {
 	return (
 		<form onSubmit={(event) => { handleSubmit(event) }} className="flex flex-col p-8 rounded-lg mb-8 bg-white border-2 bg-opacity-20 shadow-lg pin-r pin-y md:w-4/5">
 			<div className="flex justify-between">
-				<input type="hidden" aria-role="PricingID" name="id" value={formData.id} />
+				<input type="hidden" name="id" value={formData.id} />
 				<span className="faqTitle">
 					{edit ? <input name="question" style={{ width: "70%" }} type="text" value={formData.question} onChange={handleChange} /> : <>{data.question}</>
 					}
