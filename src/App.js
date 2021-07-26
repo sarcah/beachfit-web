@@ -19,6 +19,7 @@ import Contact from './front/Contact';
 import Pricing from './front/Pricing';
 import Blogs from "./front/Blogs";
 import Notification from './admin/components/notifications/Notification';
+import BlogPost from "./front/Blog";
 
 
 function App() {
@@ -46,7 +47,8 @@ function App() {
           <Route path="/timetable"><Timetable /></Route>
           <Route path="/contact"><Contact /></Route>
           <Route path="/pricing"><Pricing /></Route>
-          <Route path="/blogs"><Blogs /></Route>
+          <Route exact path="/blogs"><Blogs /></Route>
+          <Route exact path="/blogs/:id" render={(props) => (<BlogPost id={props.match.params.id} />)} />
           <Route path="/admin/signin"><SignInForm onSignIn={handleSignIn} /></Route>
           <Route path="/admin" render={() => (signedIn ? (
             <Router>
