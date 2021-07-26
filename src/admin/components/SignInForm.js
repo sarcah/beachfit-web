@@ -2,20 +2,8 @@ import React, { useState } from 'react';
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Paper, Box, Grid, Typography } from '@material-ui/core';
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { makeStyles } from '@material-ui/core';
-import InstagramLogin from 'react-instagram-login';
 
-function Copyright() {
-	return (
-	  <Typography variant="body2" color="textSecondary" align="center">
-		{'Copyright © '}
-		<Link color="inherit" href="https://material-ui.com/">
-		  Your Website
-		</Link>{' '}
-		{new Date().getFullYear()}
-		{'.'}
-	  </Typography>
-	);
-}
+
   
   const useStyles = makeStyles((theme) => ({
 	root: {
@@ -77,7 +65,6 @@ function SignInForm({ onSignIn }) {
 			<Typography component="h1" variant="h5">
 			  Sign in
 			</Typography>
-			<InstagramLogin clientId={process.env.REACT_APP_INSTAGRAM_CLIENT_ID} onSuccess={responseInstagram} onFailure={responseInstagram} implicitAuth={true} />
 			<form className={classes.form} noValidate onSubmit={handleSubmit}>
 			  <TextField
 				variant="outlined"
@@ -114,16 +101,8 @@ function SignInForm({ onSignIn }) {
 			  >
 				Sign In
 			  </Button>
-			  <Grid container>
-				<Grid item xs>
-				  <Link href="#" variant="body2">
-					Forgot password?
-				  </Link>
-				</Grid>
-				
-			  </Grid>
+			 
 			  <Box mt={5}>
-				<Copyright />
 			  </Box>
 			</form>
 		  </div>

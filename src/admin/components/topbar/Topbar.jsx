@@ -25,20 +25,7 @@ export default function Topbar({notification}) {
 				</div>
 
 				<div className="topBarRight">
-					<div className="topbarIconContainer">
-						<NotificationsNone />
-						<span className="topIconBadge">2</span>
-					</div>
-
-					<div className="topbarIconContainer">
-						<Language />
-						<span className="topIconBadge">2</span>
-					</div>
-
-					<div className="topbarIconContainer">
-						<Settings />
-						<span className="topIconBadge">2</span>
-					</div>
+					
 
 					<Button onClick={handleLogout} variant="contained" color="primary">
 						Logout

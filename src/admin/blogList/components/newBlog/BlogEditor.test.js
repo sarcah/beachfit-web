@@ -20,7 +20,7 @@ describe('Individual Blog Editor', () => {
 		});
 
 		await act(async () => {
-			const blogs = render(<Router><BlogEditor action="new" id={fakePost.id} title={fakePost.title} body={fakePost.body} notification={notification} /></Router>);
+			const blogs = render(<Router><BlogEditor action="NEW" data={fakePost} notification={notification} /></Router>);
 			expect(blogs.getByText(/Title/i)).toBeInTheDocument();
 		});
 

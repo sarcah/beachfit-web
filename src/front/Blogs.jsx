@@ -11,12 +11,14 @@ function Blogs() {
 	const [blogs, setBlogs] = useState(null);
 
 	useEffect(() => {
-		axios.get(`${API_URL}/blogs/1/posts`)
+		axios.get(`${API_URL}/blogs/1/featured-posts`)
 			.then(response => {
 				setBlogs(response.data)
 			})
 			.catch(() => { })
 	}, []);
+
+	const featuredBlog = blogs ? blogs.shift() : null;
 
 	return (
 		<>
@@ -29,15 +31,17 @@ function Blogs() {
 							<div className="flex flex-wrap md:flex-no-wrap space-x-0 md:space-x-6 mb-16">
 								{/* main post */}
 								<div className="mb-4 lg:mb-0  p-4 lg:p-0 w-full md:w-4/7 relative rounded block">
-									<iframe className="mx-auto" title="vimeo-player" src="https://player.vimeo.com/video/180393399" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+									{(blogs) ? ((featuredBlog.video != "") ?
+										(<iframe className="mx-auto" style={{ width: "40rem", height: "22rem" }} src={featuredBlog.video} frameBorder={0} allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />) : (<img src={featuredBlog.image_url} className="w-full h-auto" />)) : null
+									}
 									<h1 className="text-gray-800 text-4xl font-bold mt-2 mb-2 leading-tight">
-										{blogs ? blogs[0].title : "Loading ..."}
+										{blogs ? (<Link to={`/blogs/${featuredBlog.id}`} className="hover:text-gray-600">{featuredBlog.title}</Link>) : "Loading ..."}
 									</h1>
 									<p className="text-gray-600 mb-4">
-										{blogs ? blogs[0].body : "Loading ..."}
+										{blogs ? `${featuredBlog.body.substr(0, 300)}...` : "Loading ..."}
 									</p>
 									{blogs ?
-										<Link to={`/blogs/${blogs[0].id}`} className="inline-block px-6 py-3 mt-2 rounded-md bg-green-700 text-gray-100">
+										<Link to={`/blogs/${featuredBlog.id}`} className="inline-block px-6 py-3 mt-2 rounded-md bg-green-700 text-gray-100 hover:bg-green-400">
 											Read more
 										</Link> : "Loading ..."}
 								</div>
@@ -48,9 +52,9 @@ function Blogs() {
 							{/* recent posts */}
 							<div className="flex mt-16 mb-4 px-4 lg:px-0 items-center justify-between">
 								<h2 className="font-bold text-3xl">Latest blog posts</h2>
-								<a className="bg-gray-200 hover:bg-green-200 text-gray-800 px-3 py-1 rounded cursor-pointer">
+								<Link to="/blogs/all" className="bg-gray-200 hover:bg-green-200 text-gray-800 px-3 py-1 rounded cursor-pointer">
 									View all
-								</a>
+								</Link>
 							</div>
 							<div className="block space-x-0 lg:flex lg:space-x-6">
 
@@ -58,15 +62,16 @@ function Blogs() {
 									blogs ?
 										blogs.map(blog => {
 											return (<div className="rounded w-full lg:w-1/2 lg:w-1/3 p-4 lg:p-0">
-												<img src="https://images.unsplash.com/photo-1526666923127-b2970f64b422?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60" className="rounded" alt="technology" />
+												<div className="w-64 h-64">
+													<Link to={`/blogs/${blog.id}`}><img src={blog.image_url} className="rounded w-full h-full" /></Link></div>
 												<div className="p-4 pl-0">
 													<h2 className="font-bold text-2xl text-gray-800">
-														{blog.title}
+														<Link to={`/blogs/${blog.id}`} className="hover:text-gray-600">{blog.title.substr(0, 50)}...</Link>
 													</h2>
 													<p className="text-gray-700 mt-2">
-														{blog.body}
+														{blog.body.substr(0, 300)}...
 													</p>
-													<Link to={`/blogs/${blog.id}`} className="inline-block py-2 rounded text-green-900 mt-2 ml-auto">Read more</Link>
+													<Link to={`/blogs/${blog.id}`} className="inline-block py-2 px-4 rounded text-green-900 mt-2 ml-auto hover:bg-green-400 hover:border-4 hover:border-green-500">Read more</Link>
 												</div>
 											</div>)
 										}) : <>Loading &hellip;</>
@@ -81,17 +86,6 @@ function Blogs() {
 						{/* footer */}
 
 					</div>
-
-
-
-
-
-
-
-
-
-
-
 				</div>
 			</div>
 			<Footer />
