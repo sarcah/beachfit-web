@@ -23,7 +23,6 @@ export default function BlogList({notification}) {
 		axios.get(`${API_URL}/blogs/1/posts`)
 			.then(response => {
 				setData(response.data)
-				console.log(response.data)
 			})
 			.catch(() => { notification('There was an error in getting blog post data.', 'error') })
 	}, []);
@@ -33,13 +32,14 @@ export default function BlogList({notification}) {
 			field: 'title', headerName: 'Title', width: 180, renderCell: (params) => {
 				return (
 					<div className="userListUser">
+						{console.log(params.row)}
 						<img src={params.row.image_url} alt="" className="userListImg" />
 						{params.row.title}
 					</div>
 				)
 			}
 		},
-		{ field: 'body', headerName: 'Body', width: 360 },
+		{ field: 'body', headerName: 'Body', width: "40rem" },
 		{
 			field: "action",
 			headerName: "Action",
@@ -64,7 +64,7 @@ export default function BlogList({notification}) {
 			<Link to="/admin/blogs/1/posts/new"><button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Create</button></Link>
 			{
 				(data.length > 0) ?
-					<DataGrid rows={data} disableSelectionOnClick autoHeight columns={columns} pageSize={10} checkboxSelection /> : <div>Loading &hellip;</div>
+					<DataGrid rows={data} disableSelectionOnClick autoHeight columns={columns} pageSize={10} /> : <div>Loading &hellip;</div>
 			}
 		</div>
 	)

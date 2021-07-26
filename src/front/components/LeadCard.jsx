@@ -1,5 +1,5 @@
 import React from 'react';
-import heroImage from "../img/GMQtRz5w.jpeg"
+import heroImage from "../img/homepage_image.jpeg"
 
 function LeadCard() {
 	return (

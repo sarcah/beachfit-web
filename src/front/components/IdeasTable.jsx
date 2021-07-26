@@ -9,7 +9,7 @@ function IdeasTable() {
 			<tbody>
 				<tr className="bg-white">
 					<td className="p-0">
-						<div className="text-xl">
+						<div className="text-base">
 							<div className="relative">
 								<p className="text-center">
 									<img alt="ideas" src={idea} className="mx-auto w-24" />
@@ -24,7 +24,7 @@ function IdeasTable() {
 						</div>
 					</td>
 					<td className="p-0">
-						<div className="text-xl">
+						<div className="text-base">
 							<div className="relative">
 								<p className="text-center">
 									<img alt="ideas" src={heart} className="mx-auto w-24" />
@@ -39,7 +39,7 @@ function IdeasTable() {
 						</div>
 					</td>
 					<td className="p-0">
-						<div className="text-xl">
+						<div className="text-base">
 							<div className="relative">
 								<p className="text-center">
 									<img alt="ideas" src={power} className="mx-auto w-24" />
