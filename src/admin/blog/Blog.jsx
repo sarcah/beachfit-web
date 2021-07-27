@@ -4,6 +4,7 @@ import axios from 'axios';
 import { API_URL } from "../../api/auth.js";
 import BlogEditor from '../blogList/components/newBlog/BlogEditor';
 
+// Constants that determine what action is being performed on a blog post - create or update
 export const BLOG_ACTION = {
 	new: "NEW",
 	update: "UPDATE"

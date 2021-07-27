@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import axios from 'axios';
 import { API_URL } from "../api/auth";
 
-function BlogPost({ id }) {
+function BlogPost({ id, settings }) {
 
 	const [blog, setBlog] = useState(null);
 
@@ -19,7 +19,7 @@ function BlogPost({ id }) {
 
 	return (
 		<>
-			<Header />
+			<Header settings={settings} />
 			<div className="container md:w-4/5 mx-auto text-gray-800 leading-normal mb-64">
 				<div className="flex sm:flex-col text-center justify-center h-full bg-gray-100 rounded shadow-lg pt-8 mx-0 sm:mx-6">
 					<div className="text-left mx-8"><Link to="/blogs" className="text-green-700 hover:text-green-500 hover:bg-green-100 py-2 px-2 rounded">&lt;&lt; Back</Link></div>

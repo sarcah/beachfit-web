@@ -4,7 +4,7 @@ import background from "../img/4jILtYYg.jpeg";
 import beachfitLogo from "../img/beachfit-logo.png";
 import Navbar from "./Navbar";
 
-const Header = () => {
+const Header = ({ settings }) => {
   return (
     <div className="bg-blue-200 font-sans leading-normal tracking-normal">
       <div className="w-full flex justify-center align-center text-center content-center"><Link to="/" className="mt-8 absolute"><img alt="Header" src={beachfitLogo} title="BeachFit & Wellbeing" /></Link></div>
@@ -20,7 +20,7 @@ const Header = () => {
           {/*Title*/}
         </div>
       </div>
-      <Navbar />
+      <Navbar settings={settings} />
     </div>
   );
 };

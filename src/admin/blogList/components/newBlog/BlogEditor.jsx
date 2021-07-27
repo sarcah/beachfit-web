@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import "./newBlog.css";
-import { API_URL } from "../../../../api/auth";
+import { API_URL, responseOK } from "../../../../api/auth";
 import { Redirect } from 'react-router-dom';
 import ImageIcon from '@material-ui/icons/Image';
 import { BLOG_ACTION } from "../../../blog/Blog";
 
 function BlogEditor({ action, data, notification }) {
 
-	const [blogData, setBlogData] = useState({...data});
+	const [blogData, setBlogData] = useState({ ...data });
 	const [created, setCreated] = useState(false);
 
 	const handleSubmit = (event, id) => {
@@ -20,28 +20,28 @@ function BlogEditor({ action, data, notification }) {
 			case BLOG_ACTION.new:
 				axios.post(`${API_URL}/blogs/1/posts`, formData)
 					.then(response => {
-						if (response.status >= 200 && response.status <= 300) {
+						if (responseOK(response.status)) {
 							notification('Blog post created successfully.', 'success');
 							setCreated(true);
 						} else Promise.reject();
 					})
 					.catch(() => { notification('There was an error in creating your blog post. Your data was not saved.', 'error') });
-			break;
+				break;
 
 			case BLOG_ACTION.update:
 				axios.patch(`${API_URL}/blogs/1/posts/${id}`, formData)
 					.then(response => {
-						if (response.status >= 200 && response.status <= 300) {
+						if (responseOK(response.status)) {
 							notification('Blog post updated successfully.', 'success');
 							setCreated(true);
 						} else Promise.reject();
 					})
 					.catch(() => { notification('There was an error in updating your blog post. Your data was not saved.', 'error') });
-			break;
+				break;
 
 			default:
-			break;
-			
+				break;
+
 		}
 	}
 

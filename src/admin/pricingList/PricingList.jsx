@@ -3,14 +3,17 @@ import "./pricingList.css";
 import axios from 'axios';
 import PricingCard from './components/PricingCard';
 import NewPricingCard from './components/NewPricingCard';
+import { API_URL, responseOK } from '../../api/auth';
 
+// Constants used for pricing types - either a membership plan or a class pass
 export const PRICING_TYPE = {
 	plan: "plans",
 	pass: "passes"
 }
 
 export default function PricingList({notification}) {
-	const API_URL = process.env.REACT_APP_API_URL;
+
+	// State variable declarations
 	const [plans, setPlans] = useState({});
 	const [passes, setPasses] = useState({});
 	const [newPlan, setNewPlan] = useState(false);
@@ -18,14 +21,16 @@ export default function PricingList({notification}) {
 	const [update, setUpdate] = useState(false);
 
 	
-
+	// The handleDelete function sends a delete request to the servers for a pricing plan and also deletes it from the React view
 	const handleDelete = (endpoint, id) => {
-
-		(endpoint == PRICING_TYPE.plan) ? setPlans(plans.filter(item => item.id !== id)) : setPasses(plans.filter(item => item.id !== id))
+		
 		axios.delete(`${API_URL}/pricings/1/${endpoint}/${id}`)
 			.then(response => {
-				if (response.status >= 200 && response.status <= 300) notification('Pricing plan deleted successfully.','success');
-				else Promise.reject();
+				if (responseOK(response.status)) {
+					notification('Pricing plan deleted successfully.','success');
+					if (endpoint == PRICING_TYPE.plan) setPlans(plans.filter(item => item.id !== id)) 
+					else if (endpoint == PRICING_TYPE.pass) setPasses(plans.filter(item => item.id !== id))
+				} else Promise.reject();
 			})
 			.catch(() => { notification('There was an error in deleting the pricing plan.','error'); });
 	}
@@ -40,7 +45,7 @@ export default function PricingList({notification}) {
 		}
 		axios.patch(`${API_URL}/pricings/1/${endpoint}/${target.id.value}`, formData)
 			.then(response => {
-				if (response.status == 200) {
+				if (responseOK(response.status)) {
 					setUpdate(!update);
 					notification('Pricing plan updated successfully.','success');
 				} else Promise.reject();

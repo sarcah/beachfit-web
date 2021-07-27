@@ -3,10 +3,10 @@ import "./faqList.css";
 import axios from 'axios';
 import FaqItem from './components/FaqItem';
 import NewFaqItem from './components/NewFaqItem';
-import { API_URL } from "../../api/auth.js";
+import { API_URL, responseOK } from "../../api/auth.js";
 
 export default function FaqList({notification}) {
-	const [plans, setPlans] = useState({});
+	const [plans, setPlans] = useState(null);
 	const [newPlan, setNewPlan] = useState(false);
 	const [update, setUpdate] = useState(false);
 
@@ -20,7 +20,7 @@ export default function FaqList({notification}) {
 	const handleDelete = (id) => {
 		axios.delete(`${API_URL}/faqs/1/items/${id}`)
 			.then(response => {
-				if (response.status >= 200 && response.status <= 300) {
+				if (responseOK(response.status)) {
 					setPlans(plans.filter(item => item.id !== id))
 					notification('FAQ item deleted successfully.','success');
 				} else Promise.reject();
@@ -34,7 +34,7 @@ export default function FaqList({notification}) {
 		}
 		axios.patch(`${API_URL}/faqs/1/items/${target.id.value}`, formData)
 			.then(response => {
-				if (response.status == 200) {
+				if (responseOK(response.status)) {
 					setUpdate(!update);
 					notification('FAQ item updated successfully', 'success');
 				} else Promise.reject();
@@ -52,10 +52,10 @@ export default function FaqList({notification}) {
 			<h1 className="block text-2xl ml-0 mr-0 font-bold mb-6"> FAQs Page</h1>
 			<button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onClick={() => { setNewPlan(true) }}>Create</button>
 			<div className="flex flex-col">
-				{newPlan ? <NewFaqItem type="plans" onCreate={handleCreate} onCancel={() => { setNewPlan(false) }} /> : <></>}
-				{(plans.length > 0) ? <>{
-					plans.map(plan => <FaqItem data={plan} onUpdate={(target) => handleUpdate(target)} onDelete={() => handleDelete(plan.id)} />)
-				}</> : <>You have no FAQs.</>
+				{ newPlan ? <NewFaqItem type="plans" onCreate={handleCreate} onCancel={() => { setNewPlan(false) }} /> : <></> }
+				{ plans ? <>{
+					 plans.map(plan => <FaqItem data={plan} onUpdate={(target) => handleUpdate(target)} onDelete={() => handleDelete(plan.id)} />)
+							}</> : <>You have no FAQs.</>
 				}
 			</div>
 		</div>

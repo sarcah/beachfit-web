@@ -2,11 +2,11 @@ import React from 'react';
 import Header from "./components/Header";
 import Footer from './components/Footer';
 
-function Timetable() {
+function Timetable({ settings }) {
 
 	return (
 		<>
-			<Header />
+			<Header settings={settings} />
 			<div className="container md:w-4/5 mx-auto text-gray-800 leading-normal mb-64">
 				<div className="flex flex-col text-center justify-center h-full bg-gray-100 rounded shadow-lg pt-8 mx-0 sm:mx-6">
 					<div className="md:px-32 py-8 w-full">
@@ -16,9 +16,11 @@ function Timetable() {
 									Session Timetable
 								</h1>
 								<p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto mb-10">
-									Please email any questions to <a className="hover:underline hover:text-red-800 font-bold" href="mailto: info@beachfitandwellbeing.com">info@beachfitandwellbeing.com</a>
+
+									Please e-mail any questions to <a className="hover:underline hover:text-red-800 font-bold" href={`mailto: ${settings && settings.email_address}`}>{settings && settings.email_address}</a>
+
 								</p>
-								Alternatively call or text on <span className="font-bold">0410 068 060</span>
+								Alternatively call or text on <span className="font-bold">{ settings && settings.phone_number }</span>
 							</div>
 							<div className="grid min-w-full bg-white">
 								<div className="bg-gray-800 grid grid-cols-3 text-white">

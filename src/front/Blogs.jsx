@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import Footer from './components/Footer';
 
 
-function Blogs() {
+function Blogs({ settings }) {
 
 	const [blogs, setBlogs] = useState(null);
 
@@ -22,7 +22,7 @@ function Blogs() {
 
 	return (
 		<>
-			<Header />
+			<Header settings={settings} />
 			<div className="container md:w-4/5 mx-auto text-gray-800 leading-normal mb-64">
 				<div className="flex flex-col text-center justify-center h-full bg-gray-100 rounded shadow-lg pt-8 mx-0 sm:mx-6">
 					<div className="max-w-screen-lg mx-auto">
