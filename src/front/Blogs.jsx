@@ -5,11 +5,12 @@ import axios from 'axios';
 import Header from "./components/Header";
 import Footer from './components/Footer';
 
-
+// This displays the main Blogs page with a featured blog and several others, ordered according to creation date
 function Blogs({ settings }) {
 
 	const [blogs, setBlogs] = useState(null);
-
+	
+	// Every useEffect has a cleanup code in case the component is unmounted when the response is received
 	useEffect(() => {
 		let mounted = true;
 		axios.get(`${API_URL}/blogs/1/featured-posts`)
@@ -18,6 +19,7 @@ function Blogs({ settings }) {
 		return () => { mounted = false }
 	}, []);
 
+	// The first blog is removed and placed in featuredBlog, while the rest are rendered to the screen further down the document
 	const featuredBlog = blogs ? blogs.shift() : null;
 
 	return (

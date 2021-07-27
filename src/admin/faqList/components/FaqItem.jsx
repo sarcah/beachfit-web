@@ -7,17 +7,20 @@ export default function FaqItem({ data, onUpdate, onDelete }) {
 	const [edit, setEdit] = useState(false);
 	const [formData, setFormData] = useState({...data});
 
+	// Edit mode changes the card into a form
 	const handleEdit = (event) => {
 		event.preventDefault();
 		setEdit(!edit);
 	}
 
+	// Prevent React from hi-jacking form elements
 	const handleChange = (event) => {
 		const { name, value } = event.target;
 		const stateObject = {...formData, [name]:value};
 		setFormData(stateObject);
 	}
 
+	// After submitting the form, reset Edit mode
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		setEdit(!edit)

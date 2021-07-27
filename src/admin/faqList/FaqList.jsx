@@ -10,6 +10,7 @@ export default function FaqList({notification}) {
 	const [newPlan, setNewPlan] = useState(false);
 	const [update, setUpdate] = useState(false);
 
+	// Once created, set notification and reset the page
 	const handleCreate = (created) => {
 		if (created) {
 			setNewPlan(false);
@@ -17,6 +18,8 @@ export default function FaqList({notification}) {
 		} else notification('There was an error in creating the FAQ item. Your data was not saved.', 'error');
 	}
 
+	// Handle delete of the FAQ item and create notification if successful
+	// Also delete the notification from the screen
 	const handleDelete = (id) => {
 		axios.delete(`${API_URL}/faqs/1/items/${id}`)
 			.then(response => {
@@ -27,6 +30,7 @@ export default function FaqList({notification}) {
 			}).catch(() => { notification('There was an error in deleting the FAQ item.','error'); });
 	}
 
+	// Handle update of the FAQ item and create notification if successful
 	const handleUpdate = (target) => {
 		const formData = {
 			question: target.question.value,
@@ -42,6 +46,7 @@ export default function FaqList({notification}) {
 			.catch(() => { notification('There was an error in updating the component. Your data was not saved.', 'error'); });
 	}
 
+	// Every useEffect function has a cleanup action to ensure no memory leak occurs
 	useEffect(() => {
 		let mounted = true;
 		axios.get(`${API_URL}/faqs/1/items`)

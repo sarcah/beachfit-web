@@ -5,7 +5,7 @@ import IdeasTable from './components/IdeasTable';
 import LeadCard from './components/LeadCard';
 import Testimonials from './components/Testimonials';
 
-
+// The homepage renders the Header, LeadCard, Testimonials and Footer components
 const Home = ({ settings }) => {
 	return (
 		<>

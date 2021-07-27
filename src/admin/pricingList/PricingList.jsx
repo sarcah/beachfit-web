@@ -35,6 +35,7 @@ export default function PricingList({ notification }) {
 			.catch(() => { notification('There was an error in deleting the pricing plan.', 'error'); });
 	}
 
+	// The handleUpdate function sends a patch request and creates a notification based on whether successful or unsuccessful
 	const handleUpdate = (target, endpoint) => {
 		const formData = {
 			name: target.name.value,
@@ -53,6 +54,7 @@ export default function PricingList({ notification }) {
 			.catch(() => { notification('There was an error in updating the pricing plan.', 'error'); });
 	}
 
+	// Every useEffect has a cleanup code
 	useEffect(() => {
 		let mounted = true;
 		axios.get(`${API_URL}/pricings/1/plans`)
@@ -60,6 +62,7 @@ export default function PricingList({ notification }) {
 		return () => { mounted = false }
 	}, [newPlan, update])
 
+	// Every useEffect has a cleanup code
 	useEffect(() => {
 		let mounted = true;
 		axios.get(`${API_URL}/pricings/1/passes`)

@@ -2,6 +2,8 @@ import React from 'react';
 import Header from "./components/Header";
 import Footer from './components/Footer';
 
+// A Static stateless component that displays the class timetable
+// Values for contact information are set through settings
 function Timetable({ settings }) {
 
 	return (

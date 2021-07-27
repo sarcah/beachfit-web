@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 
+// Footer simply renders a page footer with copyright information
 function Footer() {
 	return (
 		<footer className="bg-gray-900">

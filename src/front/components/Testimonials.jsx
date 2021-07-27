@@ -4,8 +4,11 @@ import axios from "axios";
 
 function Testimonials() {
 
+	// Three random testimonials are sampled from the database and sent to the front-end
+	// Every testimonial rendered on the page is unique (no repeats)
 	const [testimonials, setTestimonials] = useState();
-
+	
+	// Every useEffect has a cleanup code in case the component is unmounted when the response is received
 	useEffect(() => {
 		let mounted = true;
 		axios.get(`${API_URL}/testimonials/sample/3`)

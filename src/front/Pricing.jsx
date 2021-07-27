@@ -6,11 +6,14 @@ import axios from 'axios';
 import "./pricing.css";
 import { Link } from 'react-router-dom';
 
+
+// Displays pricing information
 function Pricing({ settings }) {
 
 	const [plans, setPlans] = useState([]);
 	const [passes, setPasses] = useState([]);
 
+	// Every useEffect has a cleanup code in case the component is unmounted when the response is received
 	useEffect(() => {
 		let mounted = true;
 		axios.get(`${API_URL}/pricings/1/plans`)
@@ -19,6 +22,7 @@ function Pricing({ settings }) {
 		return () => { mounted = false }
 	}, []);
 
+	// Every useEffect has a cleanup code in case the component is unmounted when the response is received
 	useEffect(() => {
 		let mounted = true;
 		axios.get(`${API_URL}/pricings/1/passes`)

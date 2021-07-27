@@ -1,6 +1,7 @@
 import React from 'react';
 import { DeleteOutline } from '@material-ui/icons';
 
+// The PassCard is a component that creates Class Pass cards in the Admin site
 function PassCard({ edit, data, formData, onDelete, handleSubmit, handleEdit, handleChange }) {
 	return (
 		<form onSubmit={(event) => { handleSubmit(event) }} className="flex flex-col p-8 rounded-lg mb-8 bg-white border-2 bg-opacity-20 shadow-lg pin-r pin-y md:w-4/5">

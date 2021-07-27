@@ -3,6 +3,9 @@ import "./home.css";
 import { Link } from "react-router-dom";
 
 export default function Home() {
+
+	// The Admin homepage only includes three links to other parts of the Admin page
+	// The original plan was to create a website tracker and an Instagram feed on this page, but had to be slashed due to time constraints
 	return (
 		<div className="home">
 			<div className="w-full flex flex-wrap justify-between">

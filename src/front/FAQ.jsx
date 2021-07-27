@@ -5,15 +5,18 @@ import { PhoneAndroid } from '@material-ui/icons';
 import axios from 'axios';
 import Footer from './components/Footer';
 
-
+// FAQs are pulled from the database and displayed on the front site
+// Admin can add/delete/edit FAQs at will
 function FAQ({ settings }) {
 
 	const [faqs, setFaqs] = useState([]);
 
+	// Simply toggles the displaying of the phone number information
 	const handleShowPhoneNumber = () => {
 		document.getElementById("phoneNumber").classList.toggle("hidden");
 	}
 
+	// Every useEffect has a cleanup code in case the component is unmounted when the response is received
 	useEffect(() => {
 		let mounted = true;
 		axios.get(`${API_URL}/faqs/1/items`)
@@ -55,8 +58,8 @@ function FAQ({ settings }) {
 
 								Want to find out more? E-mail or call me to book your free trial.
 								<div className="flex flex-row justify-center mt-12 flex-1">
-									<div className="sm:w-2/6"><a href="mailto: info@beachfitandwellbeing.com"><button className="bg-black mr-8 rounded-md px-5 py-3 sm:px-7 hover:bg-gray-800 text-white">Email Me</button></a></div>
-									<div className="sm:w-2/6"><button onClick={handleShowPhoneNumber} className="bg-black mr-8 rounded-md px-5 py-3 sm:px-7  hover:bg-gray-800 text-white">Call Me</button><div id="phoneNumber" className="mt-8 hidden font-bold"><PhoneAndroid /> +61 410 068 060</div></div>
+									<div className="sm:w-2/6"><a href={`mailto:${settings && settings.email_address}`}><button className="bg-black mr-8 rounded-md px-5 py-3 sm:px-7 hover:bg-gray-800 text-white">Email Me</button></a></div>
+									<div className="sm:w-2/6"><button onClick={handleShowPhoneNumber} className="bg-black mr-8 rounded-md px-5 py-3 sm:px-7  hover:bg-gray-800 text-white">Call Me</button><div id="phoneNumber" className="mt-8 hidden font-bold"><PhoneAndroid /> { settings && settings.phone_number }</div></div>
 								</div>
 							</div>
 						</section>

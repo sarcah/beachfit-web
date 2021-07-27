@@ -13,6 +13,7 @@ export const BLOG_ACTION = {
 export default function Blog({ id, notification }) {
 	const [blogData, setBlogData] = useState(null);
 
+	// Every useEffect function has a cleanup action to ensure no memory leak occurs
 	useEffect(() => {
 		let mounted = true;
 		axios.get(`${API_URL}/blogs/1/posts/${id}`)

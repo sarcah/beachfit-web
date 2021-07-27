@@ -5,6 +5,9 @@ import Navlink from "./Navlink";
 import MenuIcon from '@material-ui/icons/Menu';
 import "./navbar.css";
 
+// The Navbar is affected by its settings values
+// The client wanted to be able to show/hide blogs, show/hide FAQs and other information
+// The navbar displays buttons based on what settings the client has selected
 function Navbar({ settings }) {
 	return (
 		<div className="sm:px-4 md:px-0 md:w-4/5 mx-auto -mt-32">

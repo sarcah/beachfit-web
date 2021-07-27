@@ -7,11 +7,13 @@ export default function NewFaqItem({ data, onCreate, onCancel }) {
 
 	const [value, setValue] = useState({ ...data });
 
+	// Prevent React from hijacking elements on the page
 	const handleChange = (event) => {
 		event.preventDefault();
 		setValue(event.target.value);
 	}
 
+	// Submitting the form sends a POST request to create a new item
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const target = event.target;
@@ -20,6 +22,8 @@ export default function NewFaqItem({ data, onCreate, onCancel }) {
 			answer: target.answer.value,
 			faq_id: 1
 		}
+
+		// The onCreate is a callback function that changes the form back to its original state
 		axios.post(`${API_URL}/faqs/1/items/${target.id.value}`, formData)
 			.then(response => {
 				if (responseOK(response.status)) onCreate(true);

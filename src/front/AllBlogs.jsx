@@ -5,10 +5,12 @@ import { API_URL } from "../api/auth";
 import Header from './components/Header';
 import Footer from './components/Footer';
 
+// AllBlogs displays all blogs in a long list
 function AllBlogs({ settings }) {
 
 	const [blogs, setBlogs] = useState(null);
 
+	// Every useEffect has a cleanup code in case the component is unmounted when the response is received
 	useEffect(() => {
 		let mounted = true;
 		axios.get(`${API_URL}/blogs/1/posts`)

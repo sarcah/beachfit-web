@@ -5,10 +5,12 @@ import Footer from './components/Footer';
 import axios from 'axios';
 import { API_URL } from "../api/auth";
 
+// The BlogPost component displays individual blog, along with image or a video if one is attached
 function BlogPost({ id, settings }) {
 
 	const [blog, setBlog] = useState(null);
 
+	// Every useEffect has a cleanup code in case the component is unmounted when the response is received
 	useEffect(() => {
 		let mounted = true;
 		axios.get(`${API_URL}/blogs/1/posts/${id}`)

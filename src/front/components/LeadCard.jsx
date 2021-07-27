@@ -1,6 +1,7 @@
 import React from 'react';
 import heroImage from "../img/homepage_image.jpeg"
 
+// The LeadCard is a static stateless component rendered on the homepage
 function LeadCard() {
 	return (
 		<div className="flex h-full flex-col text-center justify-center bg-white rounded overflow-hidden shadow-lg">

@@ -6,8 +6,8 @@ import "./settings.css"
 function Settings({ notification }) {
 
 	const [settings, setSettings] = useState(null);
-	const [checked, setChecked] = useState(false);
 
+	// Every useEffect has a cleanup code in case the component is unmounted when the response is received
 	useEffect(() => {
 		let mounted = true;
 		axios.get(`${API_URL}/settings`)
@@ -20,6 +20,7 @@ function Settings({ notification }) {
 		return () => { mounted = false }
 	}, []);
 
+	// The handleSubmit here creates an object manually and sends the data accordingly
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const form = event.target;

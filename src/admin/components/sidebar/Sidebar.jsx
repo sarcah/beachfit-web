@@ -3,6 +3,8 @@ import "./sidebar.css";
 import SideBarLink from './SideBarLink';
 
 export default function Sidebar() {
+	
+	// Sidebar for the Admin page that inclues links
 	return (
 		<div>
 			<div className="p-5 text-gray-600 sticky">

@@ -4,6 +4,8 @@ import { PhoneAndroid } from '@material-ui/icons';
 import Yvonne from "./img/yvonne.jpg";
 import Footer from './components/Footer';
 
+// The About page is a static stateless component that simply renders about page information
+// It renders contact information based on the values in settings
 function About({ settings }) {
 
 	const handleShowPhoneNumber = () => {
