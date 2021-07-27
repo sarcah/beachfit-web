@@ -11,30 +11,31 @@ export const PRICING_TYPE = {
 	pass: "passes"
 }
 
-export default function PricingList({notification}) {
+export default function PricingList({ notification }) {
 
 	// State variable declarations
-	const [plans, setPlans] = useState({});
-	const [passes, setPasses] = useState({});
+	const [plans, setPlans] = useState(null);
+	const [passes, setPasses] = useState(null);
 	const [newPlan, setNewPlan] = useState(false);
 	const [newPass, setNewPass] = useState(false);
 	const [update, setUpdate] = useState(false);
 
-	
+
 	// The handleDelete function sends a delete request to the servers for a pricing plan and also deletes it from the React view
 	const handleDelete = (endpoint, id) => {
-		
+
 		axios.delete(`${API_URL}/pricings/1/${endpoint}/${id}`)
 			.then(response => {
 				if (responseOK(response.status)) {
-					notification('Pricing plan deleted successfully.','success');
-					if (endpoint == PRICING_TYPE.plan) setPlans(plans.filter(item => item.id !== id)) 
+					notification('Pricing plan deleted successfully.', 'success');
+					if (endpoint == PRICING_TYPE.plan) setPlans(plans.filter(item => item.id !== id))
 					else if (endpoint == PRICING_TYPE.pass) setPasses(plans.filter(item => item.id !== id))
 				} else Promise.reject();
 			})
-			.catch(() => { notification('There was an error in deleting the pricing plan.','error'); });
+			.catch(() => { notification('There was an error in deleting the pricing plan.', 'error'); });
 	}
 
+	// The handleUpdate function sends a patch request and creates a notification based on whether successful or unsuccessful
 	const handleUpdate = (target, endpoint) => {
 		const formData = {
 			name: target.name.value,
@@ -47,20 +48,26 @@ export default function PricingList({notification}) {
 			.then(response => {
 				if (responseOK(response.status)) {
 					setUpdate(!update);
-					notification('Pricing plan updated successfully.','success');
+					notification('Pricing plan updated successfully.', 'success');
 				} else Promise.reject();
 			})
 			.catch(() => { notification('There was an error in updating the pricing plan.', 'error'); });
 	}
 
+	// Every useEffect has a cleanup code
 	useEffect(() => {
+		let mounted = true;
 		axios.get(`${API_URL}/pricings/1/plans`)
-			.then(response => { setPlans(() => response.data) }).catch();
+			.then(response => { if (mounted) setPlans(() => response.data) }).catch();
+		return () => { mounted = false }
 	}, [newPlan, update])
 
+	// Every useEffect has a cleanup code
 	useEffect(() => {
+		let mounted = true;
 		axios.get(`${API_URL}/pricings/1/passes`)
-			.then(response => { setPasses(response.data) }).catch();
+			.then(response => { if (mounted) setPasses(response.data) }).catch();
+		return () => { mounted = false }
 	}, [newPass])
 
 	return (
@@ -69,18 +76,19 @@ export default function PricingList({notification}) {
 			<button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 mr-4 rounded" onClick={() => { setNewPlan(true) }}>Create a Membership Plan</button>
 			<button className="bg-red-500 mb-8 hover:bg-red-700 text-white font-bold py-2 px-4 mr-4 rounded" onClick={() => { setNewPass(true) }}>Create a Class Pass</button>
 			<div className="flex flex-row flex-wrap">
-				{newPlan ? <NewPricingCard type={PRICING_TYPE.plan} onCreate={() => { setNewPlan(false) }} onCancel={() => { setNewPlan(false) }} /> : <></>}
-				{newPass ? <NewPricingCard type={PRICING_TYPE.pass} onCreate={() => { setNewPass(false) }} onCancel={() => { setNewPass(false) }} /> : <></>}
-				{
-					(plans.length > 0) ? <>{
-						plans.map(plan => <PricingCard type={PRICING_TYPE.plan} data={plan} onUpdate={(target) => handleUpdate(target, PRICING_TYPE.plan)} onDelete={() => handleDelete(PRICING_TYPE.plan, plan.id)} />)
-					}</> : <>You have no Plans.</>
-				}
-				{
-					(passes.length > 0) ? <>{
-						passes.map(pass => <PricingCard type={PRICING_TYPE.pass} data={pass} onUpdate={(target) => handleUpdate(target, PRICING_TYPE.pass)} onDelete={() => handleDelete(PRICING_TYPE.pass, pass.id)} />)
-					}</> : <>You have no Passes.</>
-				}
+					{newPlan ? <NewPricingCard type={PRICING_TYPE.plan} onCreate={() => { setNewPlan(false) }} onCancel={() => { setNewPlan(false) }} /> : <></>}
+				
+					{newPass ? <NewPricingCard type={PRICING_TYPE.pass} onCreate={() => { setNewPass(false) }} onCancel={() => { setNewPass(false) }} /> : <></>}
+				
+				<div data-testid="pricingcards">
+					{
+						(plans) ? plans.map(plan => <div key={plan.id}><PricingCard type={PRICING_TYPE.plan} data={plan} onUpdate={(target) => handleUpdate(target, PRICING_TYPE.plan)} onDelete={() => handleDelete(PRICING_TYPE.plan, plan.id)} /></div>) : <>You have no Plans.</>
+					}
+				</div>
+				
+					{
+						(passes) ? passes.map(pass => <div key={pass.id}><PricingCard type={PRICING_TYPE.pass} data={pass} onUpdate={(target) => handleUpdate(target, PRICING_TYPE.pass)} onDelete={() => handleDelete(PRICING_TYPE.pass, pass.id)} /></div>) : <>You have no Passes.</>
+					}
 
 			</div>
 		</div>

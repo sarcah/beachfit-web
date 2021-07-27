@@ -16,7 +16,7 @@ describe('BlogsList', () => {
 
 		await act(async () => {
 			const product = render(<Router><BlogList /></Router>);
-			expect(screen.getByText(/Loading/i)).toBeInTheDocument();
+			expect(product.getByText(/Loading/i)).toBeInTheDocument();
 		});
 
 		// screen.debug();

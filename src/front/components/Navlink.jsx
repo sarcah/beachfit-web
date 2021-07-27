@@ -2,7 +2,10 @@ import React from 'react';
 import { Link, useLocation } from "react-router-dom";
 
 function Navlink({linkTo, linkText}) {
+
+	// The navlink updates its CSS by highlighting which page the user is on
 	const active = (useLocation().pathname === linkTo);
+
 	return (
 		<li>
 			<Link className={`inline-block rounded-sm py-2 sm:px-2 px-1 text-black no-underline hover:bg-gray-600 hover:text-white ${active ? "bg-gray-300" : ""}`} to={linkTo}>{linkText}</Link>

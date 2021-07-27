@@ -5,23 +5,25 @@ import Footer from './components/Footer';
 import axios from 'axios';
 import { API_URL } from "../api/auth";
 
+// The BlogPost component displays individual blog, along with image or a video if one is attached
 function BlogPost({ id, settings }) {
 
 	const [blog, setBlog] = useState(null);
 
+	// Every useEffect has a cleanup code in case the component is unmounted when the response is received
 	useEffect(() => {
+		let mounted = true;
 		axios.get(`${API_URL}/blogs/1/posts/${id}`)
-			.then(response => {
-				setBlog(response.data)
-			})
+			.then(response => { if (mounted) setBlog(response.data) })
 			.catch(() => { })
+		return () => { mounted = false }
 	}, [])
 
 	return (
 		<>
 			<Header settings={settings} />
 			<div className="container md:w-4/5 mx-auto text-gray-800 leading-normal mb-64">
-				<div className="flex sm:flex-col text-center justify-center h-full bg-gray-100 rounded shadow-lg pt-8 mx-0 sm:mx-6">
+				<div className="flex sm:flex-col text-center justify-center h-full bg-gray-100 rounded shadow-lg pt-8 mx-0 sm:mx-6" data-testid="individualBlog">
 					<div className="text-left mx-8"><Link to="/blogs" className="text-green-700 hover:text-green-500 hover:bg-green-100 py-2 px-2 rounded">&lt;&lt; Back</Link></div>
 					{
 						blog ? (

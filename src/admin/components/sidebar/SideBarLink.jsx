@@ -7,6 +7,7 @@ import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 import SettingsIcon from '@material-ui/icons/Settings';
 
+// Each link has a different icon
 function LinkIcon({ linkText }) {
 	switch (linkText) {
 		case "Home":
@@ -23,12 +24,15 @@ function LinkIcon({ linkText }) {
 }
 
 export default function SideBarLink({ linkTo, linkText }) {
+
+	// Depending on which page the user is on, updates CSS of the link to highlight it
 	const active = (useLocation().pathname == linkTo);
+	
 	return (
 		<Link to={linkTo} className="link">
-			<li className={`sidebarListItem ${active ? "active" : ""}`}>
-				<LinkIcon className="sidebarIcon" linkText={linkText} />&nbsp;
-				{linkText}
+			<li className={`sidebarListItem p-1 cursor-pointer flex items-center w-full rounded-xl ${active ? "active" : ""}`}>
+				<LinkIcon className="mr-1 text-xl" linkText={linkText} />&nbsp;
+				<div className="hidden sm:block">{linkText}</div>
 			</li>
 		</Link>
 	)

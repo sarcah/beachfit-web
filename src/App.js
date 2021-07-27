@@ -46,18 +46,28 @@ function App() {
 
   // Get Settings from the database
   useEffect(() => {
+      let mounted = true;
       axios.get(`${API_URL}/settings`)
-        .then(response => { setSettings(response.data); console.log(response.data) })
+        .then(response => { if (mounted) setSettings(response.data) })
         .catch();
+      return () => { mounted = false }
   }, [])
 
   return (
     <div className="App">
+      
+      {/* Displays a red/green notification at the top-right of the page for various purposes */}
       <Notification notify={notify} setNotify={setNotify} />
+
+      {/* All Routes are defined on this page */}
       <Router>
+
+        {/* If signed in, redirects to the admin page */}
         { signedIn ? <Redirect to="/admin" /> : <Redirect to="/" />  }
 
         <Switch>
+
+          {/* All main page routes */}
           <Route exact path="/"><Home settings={settings} /></Route>
           <Route path="/about"><About settings={settings} /></Route>
           <Route path="/faq"><FAQ settings={settings} /></Route>
@@ -70,9 +80,13 @@ function App() {
           <Route path="/admin/signin"><SignInForm onSignIn={handleSignIn} /></Route>
           <Route path="/admin" render={() => (signedIn ? (
             <Router>
+
+              {/* Render the Topbar in Admin page */}
               <Topbar notification={handleNotification} />
               <div className="container-admin-sidebar">
                 <Sidebar />
+
+                {/* All Admin page routes */}
                 <Switch>
                   <Route exact path="/admin" render={requireAuth(() => (<AdminHome />))} />
                   <Route exact path="/admin/blogs" render={requireAuth(() => (<BlogList notification={handleNotification} />))} />

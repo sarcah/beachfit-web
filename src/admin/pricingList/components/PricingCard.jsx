@@ -4,7 +4,7 @@ import { PRICING_TYPE } from "../PricingList";
 import PlanCard from './PlanCard';
 import PassCard from './PassCard';
 
-
+// Depending on the "type" of card, the component renders a different card on the page
 export default function PricingCard({ type, data, onUpdate, onDelete }) {
 
 	const [edit, setEdit] = useState(false);

@@ -10,13 +10,17 @@ function BlogEditor({ action, data, notification }) {
 
 	const [blogData, setBlogData] = useState({ ...data });
 	const [created, setCreated] = useState(false);
+	const [imagePreview, setImagePreview] = useState(null);
 
+	// Send all data as form data
 	const handleSubmit = (event, id) => {
 		event.preventDefault();
 		const formData = new FormData(event.target);
 		console.log(event.target.name);
 
 		switch (action) {
+
+			// Post request to create a new blog post
 			case BLOG_ACTION.new:
 				axios.post(`${API_URL}/blogs/1/posts`, formData)
 					.then(response => {
@@ -28,6 +32,7 @@ function BlogEditor({ action, data, notification }) {
 					.catch(() => { notification('There was an error in creating your blog post. Your data was not saved.', 'error') });
 				break;
 
+			// Path request to update blog post
 			case BLOG_ACTION.update:
 				axios.patch(`${API_URL}/blogs/1/posts/${id}`, formData)
 					.then(response => {
@@ -45,9 +50,19 @@ function BlogEditor({ action, data, notification }) {
 		}
 	}
 
+	// Prevent React from taking ownership of textboxes and other form elements
 	const handleTextChange = (event) => {
 		event.preventDefault();
 		setBlogData(event.target.value);
+	}
+
+	// Show a preview of the image before uploading
+	const handleImagePreview = (event) => {
+		if (event.target.files) {
+			console.log(event.target.value)
+			setImagePreview(URL.createObjectURL(event.target.files[0]))
+			document.getElementById("uploadButton").classList.add("hidden");
+		}
 	}
 
 	return (
@@ -76,10 +91,11 @@ function BlogEditor({ action, data, notification }) {
 
 								<div className="items-center justify-center bg-grey-lighter mb-4">
 									<div className="text-xl text-gray-600">Image</div>
-									<label className="w-full flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-blue-700">
+									<img className="w-24 h-auto" src={imagePreview} />
+									<label id="uploadButton" className="w-full flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-blue-700">
 										<ImageIcon />
 										<span className="mt-2 text-base leading-normal">Select an image</span>
-										<input type="file" className="hidden" name="image" accept="image/*" />
+										<input type="file" className="hidden" name="image" accept="image/*" onChange={handleImagePreview} />
 									</label>
 								</div>
 								<div className="mb-4">

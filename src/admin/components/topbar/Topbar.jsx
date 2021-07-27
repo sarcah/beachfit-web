@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 export default function Topbar({notification}) {
 
+	// Logout function signs the user out and redirects them to the front website
 	const handleLogout = () => {
 		if(signOut()) { 
 			notification('Signed out successfully.', 'success');
@@ -17,13 +18,11 @@ export default function Topbar({notification}) {
 
 	return (
 		<div className="topbar">
-
 			<div className="topBarWrapper">
 				<img src="https://picsum.photos/200/300" alt="" className="topAvatar" />
 				<div className="topBarLeft">
 					<Link to="/admin" className="logo">Admin Page</Link>
 				</div>
-
 				<div className="topBarRight">
 					<Button onClick={handleLogout} variant="contained" color="primary">
 						Logout

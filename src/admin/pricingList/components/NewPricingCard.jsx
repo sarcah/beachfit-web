@@ -5,15 +5,21 @@ import { API_URL, responseOK } from "../../../api/auth.js";
 import { PRICING_TYPE } from '../PricingList';
 
 export default function NewPricingCard({ type, data, onCreate, onCancel }) {
+
+	// The useState hook updates elements on the page
 	const [value, setValue] = useState({ ...data });
 
+	// Create a blank card and add the form to it depending on the type
 	let card = (<></>);
 
+	// Disallow React from hijacking elements
 	const handleChange = (event) => {
 		event.preventDefault();
 		setValue(event.target.value);
 	}
 
+	// The handleSubmit below checks to see what type of data is being submitted: Either a plan or a pass
+	// It uses control flow to create objects accordingly
 	const handleSubmit = (event, type) => {
 		event.preventDefault();
 		const target = event.target;

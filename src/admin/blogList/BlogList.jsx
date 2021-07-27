@@ -6,9 +6,10 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL, responseOK } from "../../api/auth.js";
 
-export default function BlogList({notification}) {
+export default function BlogList({ notification }) {
 	const [data, setData] = useState([]);
 
+	// The handleDelete function sends a delete request to the servers but also deletes the object from the screen
 	const handleDelete = (id) => {
 		setData(data.filter(item => item.id !== id))
 		axios.delete(`${API_URL}/blogs/1/posts/${id}`)
@@ -19,12 +20,17 @@ export default function BlogList({notification}) {
 			.catch(() => { notification('There was an error in deleting the blog post.', 'error') });
 	}
 
+	// Every useEffect function has a cleanup action to ensure no memory leak occurs
 	useEffect(() => {
+		let mounted = true;
 		axios.get(`${API_URL}/blogs/1/posts`)
-			.then(response => { setData(response.data) })
+			.then(response => { if (mounted) setData(response.data) })
 			.catch(() => { notification('There was an error in getting blog post data.', 'error') })
+		return () => { mounted = false }
 	}, []);
 
+
+	// Configure the Material-UI datagrid columns using the configuration settings below
 	const columns = [
 		{
 			field: 'title', headerName: 'Title', width: 180, renderCell: (params) => {

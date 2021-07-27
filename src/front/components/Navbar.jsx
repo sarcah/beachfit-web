@@ -2,14 +2,21 @@ import React from 'react'
 import InstagramIcon from "@material-ui/icons/Instagram";
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import Navlink from "./Navlink";
+import MenuIcon from '@material-ui/icons/Menu';
+import "./navbar.css";
 
+// The Navbar is affected by its settings values
+// The client wanted to be able to show/hide blogs, show/hide FAQs and other information
+// The navbar displays buttons based on what settings the client has selected
 function Navbar({ settings }) {
 	return (
-		<div className="px-4 md:px-0 md:w-4/5 mx-auto -mt-32">
+		<div className="sm:px-4 md:px-0 md:w-4/5 mx-auto -mt-32">
 			<div className="mx-0 sm:mx-6">
 				<nav className="mt-0 w-full">
 					<div className="container mx-auto flex items-center bg-white">
-						<div className="flex w-1/2 pl-4 text-sm">
+						<div className="flex w-1/2 sm:pl-4 text-sm">
+						<label htmlFor="menuCheck" id="navBurger" className="sm:hidden block"><MenuIcon /></label>
+						<input type="checkbox" id="menuCheck" className="hidden" />
 							<ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
 								<Navlink linkTo="/" linkText="Home" />
 								<Navlink linkTo="/about" linkText="About" />

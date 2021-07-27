@@ -5,19 +5,21 @@ import axios from 'axios';
 import Header from "./components/Header";
 import Footer from './components/Footer';
 
-
+// This displays the main Blogs page with a featured blog and several others, ordered according to creation date
 function Blogs({ settings }) {
 
 	const [blogs, setBlogs] = useState(null);
-
+	
+	// Every useEffect has a cleanup code in case the component is unmounted when the response is received
 	useEffect(() => {
+		let mounted = true;
 		axios.get(`${API_URL}/blogs/1/featured-posts`)
-			.then(response => {
-				setBlogs(response.data)
-			})
+			.then(response => { if (mounted) setBlogs(response.data) })
 			.catch(() => { })
+		return () => { mounted = false }
 	}, []);
 
+	// The first blog is removed and placed in featuredBlog, while the rest are rendered to the screen further down the document
 	const featuredBlog = blogs ? blogs.shift() : null;
 
 	return (
@@ -56,17 +58,17 @@ function Blogs({ settings }) {
 									View all
 								</Link>
 							</div>
-							<div className="block space-x-0 lg:flex lg:space-x-6">
+							<div data-testid="bloglist" className="block space-x-0 lg:flex lg:space-x-6">
 
 								{
 									blogs ?
 										blogs.map(blog => {
-											return (<div className="rounded w-full lg:w-1/2 lg:w-1/3 p-4 lg:p-0">
+											return (<div key={blog.id} className="rounded w-full lg:w-1/2 lg:w-1/3 p-4 lg:p-0">
 												<div className="w-64 h-64">
 													<Link to={`/blogs/${blog.id}`}><img src={blog.image_url} className="rounded w-full h-full" /></Link></div>
 												<div className="p-4 pl-0">
 													<h2 className="font-bold text-2xl text-gray-800">
-														<Link to={`/blogs/${blog.id}`} className="hover:text-gray-600">{blog.title.substr(0, 50)}...</Link>
+														<Link to={`/blogs/${blog.id}`} className="hover:text-gray-600" >{blog.title.substr(0, 50)}...</Link>
 													</h2>
 													<p className="text-gray-700 mt-2">
 														{blog.body.substr(0, 300)}...

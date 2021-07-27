@@ -3,6 +3,7 @@ import idea from "../img/idea.png";
 import heart from "../img/heart.png";
 import power from "../img/power.png";
 
+// The IdeasTable component is a static stateless component that is rendered on the main homepage
 function IdeasTable() {
 	return (
 		<table className="w-full table mt-20">

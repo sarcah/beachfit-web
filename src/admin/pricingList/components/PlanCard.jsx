@@ -1,6 +1,7 @@
 import React from 'react';
 import { DeleteOutline } from '@material-ui/icons';
 
+// The PlanCard is a component that creates Membership Plan cards in the Admin site
 function PlanCard({ edit, data, formData, onDelete, handleChange, handleEdit, handleSubmit }) {
 	return (
 		<form onSubmit={(event) => { handleSubmit(event) }} className="flex flex-col p-8 rounded-lg mb-8 bg-white border-2 bg-opacity-20 shadow-lg pin-r pin-y md:w-4/5">

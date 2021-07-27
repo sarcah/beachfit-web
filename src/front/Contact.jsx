@@ -5,6 +5,9 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import "./contact.css";
 import Footer from './components/Footer';
 
+// Displays the client's contact information
+// Static, stateless components
+// Values are passed through settings prop
 function Contact({ settings }) {
 	return (
 		<>

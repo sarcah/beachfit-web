@@ -21,9 +21,9 @@ describe('Individual Blog Editor', () => {
 
 		await act(async () => {
 			const blogs = render(<Router><BlogEditor action="NEW" data={fakePost} notification={notification} /></Router>);
-			expect(blogs.getByText(/Title/i)).toBeInTheDocument();
+			
 		});
-
+		expect(screen.getByText(/Title/i)).toBeInTheDocument();
 		expect(screen.getByDisplayValue(/Test blog/i)).toBeInTheDocument();
 		expect(screen.getByDisplayValue(/Full blog body/i)).toBeInTheDocument();
 		

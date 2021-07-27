@@ -2,7 +2,10 @@
 	flex: 4;
 }
 
-.homeWidgets {
-	display: flex;
-	margin: 20px;
+.featuredItem {
+	flex: 1;
+	margin: 0px 20px;
+	border-radius: 10px;
+	-webkit-box-shadow: 9px 9px 29px -7px #000000; 
+	box-shadow: 9px 9px 29px -7px #000000;
 }

@@ -4,6 +4,8 @@ import background from "../img/4jILtYYg.jpeg";
 import beachfitLogo from "../img/beachfit-logo.png";
 import Navbar from "./Navbar";
 
+// Header renders the head of the page, logo and Navbar
+// It is affected by settings.
 const Header = ({ settings }) => {
   return (
     <div className="bg-blue-200 font-sans leading-normal tracking-normal">
