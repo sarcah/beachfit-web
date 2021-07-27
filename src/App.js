@@ -46,9 +46,11 @@ function App() {
 
   // Get Settings from the database
   useEffect(() => {
+      let mounted = true;
       axios.get(`${API_URL}/settings`)
-        .then(response => { setSettings(response.data); console.log(response.data) })
+        .then(response => { if (mounted) setSettings(response.data) })
         .catch();
+      return () => { mounted = false }
   }, [])
 
   return (

@@ -12,39 +12,30 @@ function Pricing({ settings }) {
 	const [passes, setPasses] = useState([]);
 
 	useEffect(() => {
+		let mounted = true;
 		axios.get(`${API_URL}/pricings/1/plans`)
-			.then(response => { setPlans(response.data) }).catch();
+			.then(response => { if (mounted) setPlans(response.data) })
+			.catch();
+		return () => { mounted = false }
 	}, []);
 
 	useEffect(() => {
+		let mounted = true;
 		axios.get(`${API_URL}/pricings/1/passes`)
-			.then(response => { setPasses(response.data) }).catch();
+			.then(response => { if (mounted) setPasses(response.data) })
+			.catch();
+		return () => { mounted = false }
 	}, []);
 
 	return (
 		<>
-			<Header  settings={settings} />
+			<Header settings={settings} />
 			<div className="container md:w-4/5 mx-auto text-gray-800 leading-normal mb-64">
 				<div className="flex flex-col text-center justify-center h-full bg-gray-100 rounded shadow-lg pt-8 mx-0 sm:mx-6">
 					<div>
 						<h1 className="sm:text-3xl text-2xl font-medium text-center title-font text-gray-900 mb-4">
 							Our Pricing
 						</h1>
-						{/* <div className="flex flex-row justify-center my-4 text-sm tracking-tight font-medium text-gray-700">
-							<p className="mx-3">Annually</p>
-							<label htmlFor="toggle" className="flex items-center cursor-pointer">
-								<div className="relative">
-									
-									<input id="toggle" type="checkbox" className="hidden" />
-									
-									<div className="w-10 h-3 bg-gray-400 rounded-full shadow-inner" />
-									
-									<div className="toggle_dot absolute w-5 h-5 bg-white rounded-full shadow inset-y-0 left-0" />
-								</div>
-							</label>
-							<p className="mx-3">Monthly</p>
-						</div> */}
-
 
 						<div data-testid="annual" className="flex flex-col md:flex-row md:transform md:scale-75 lg:scale-100 justify-center">
 							{
@@ -68,7 +59,7 @@ function Pricing({ settings }) {
 						<div className="text-xl md:mt-24 md:mb-24 leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto mb-10">
 							If you don't wish to commit to a membership, we also do class passes. You’ve got three packages to choose from:</div>
 
-						<div className="flex flex-row justify-center items-center">
+						<div className="flex flex-row flex-wrap justify-center items-center">
 							{
 								(passes.length > 0) ? passes.map(pass => {
 									return (

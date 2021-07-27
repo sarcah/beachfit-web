@@ -7,12 +7,15 @@ function Testimonials() {
 	const [testimonials, setTestimonials] = useState();
 
 	useEffect(() => {
+		let mounted = true;
 		axios.get(`${API_URL}/testimonials/sample/3`)
-			.then(response => setTestimonials(response.data)).catch();
+			.then(response => { if (mounted) setTestimonials(response.data) })
+			.catch();
+		return () => { mounted = false }
 	}, []);
 
 	return (
-		<div className="flex flex-wrap justify-between pt-6 -mx-6">
+		<div data-testid="test" className="flex flex-wrap justify-between pt-6 -mx-6">
 			{
 				testimonials && testimonials.map(testimonial => {
 					return (

@@ -18,10 +18,6 @@ describe('Pricing page', () => {
 			expect(pricingCard.getByTestId("annual")).toHaveTextContent("Loading");
 			
 		});
-
-		// expect(pricingCard.getByRole("div")).toHaveTextContent("Fake plan");
-
-		// screen.debug();
 		spy.mockRestore();
 	})
 })

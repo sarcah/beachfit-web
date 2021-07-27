@@ -26,9 +26,9 @@ export default function SideBarLink({ linkTo, linkText }) {
 	const active = (useLocation().pathname == linkTo);
 	return (
 		<Link to={linkTo} className="link">
-			<li className={`sidebarListItem ${active ? "active" : ""}`}>
-				<LinkIcon className="sidebarIcon" linkText={linkText} />&nbsp;
-				{linkText}
+			<li className={`sidebarListItem p-1 cursor-pointer flex items-center w-full rounded-xl ${active ? "active" : ""}`}>
+				<LinkIcon className="mr-1 text-xl" linkText={linkText} />&nbsp;
+				<div className="hidden sm:block">{linkText}</div>
 			</li>
 		</Link>
 	)

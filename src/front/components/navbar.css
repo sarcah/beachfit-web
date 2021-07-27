@@ -1,0 +1,41 @@
+@media screen and (max-width: 640px) {
+	#menuCheck:checked + ul {
+		display: flex;
+		position: absolute;
+		flex-direction: column;
+		width: 100vw;
+		height: 40vh;
+		top: 1.5em;
+		background-color: lightslategrey;
+		margin-left: 0px;
+		padding-inline-start: 0px;
+		z-index: 9998;
+	}
+
+	#menuCheck:checked + ul li {
+		text-align: center;
+		width: 100%;
+	}
+
+	#menuCheck:checked + ul li a {
+		width: 100%;
+		color: white;
+	}
+	
+	#menuCheck + ul {
+		display: none;
+	}
+
+	#navBurger {
+		position: absolute !important;
+		top: 1em;
+		left: 1em;
+		margin-top: -1em;
+		margin-left: -1em;
+		padding-left: 1em;
+		z-index: 9999;
+		width: 100vh;
+		background-color: lightslategrey;
+		color: white;
+	}
+}

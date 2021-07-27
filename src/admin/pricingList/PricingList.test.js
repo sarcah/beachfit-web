@@ -1,28 +1,29 @@
 import PricingList from "./PricingList";
 import { render, screen } from "@testing-library/react";
-import { describe } from "yargs";
+import { expect } from "@jest/globals";
+import axios from "axios";
+import { act } from "react-dom/test-utils"
 
+jest.mock("axios");
 
-describe('Pricing list', () => {
-	it('should show loading', () => {
-		render(<PricingList />);
-		const text = screen.getByText(/Loading/i);
-		expect(text).toBeInTheDocument();
-	});
+const fakePlan = [
+	    {
+	      id: 1,
+	      name: "Fake plan",
+	      price: 66,
+	      description: "fake description",
+	      session_times: "Fake session times",
+	      sessions_per_week: "Fake sessions per week",
+	    },
+	  ];
+	
+const notification = () => { return "Dummy Function" }
 
-	it('should show the Pricing Cards', () => {
-		const pricingCards = [
-			{ id: 72, name: "Full Membership", price: 49 },
-			{ id: 73, name: "Partial Membership", price: 33 },
-		]
-		render(<PricingList />);
-		const table = screen.getByRole('form');
-		expect(table).toHaveTextContent(/Full Membership/);
+it('returns the first plan', async () => {
+	axios.get.mockResolvedValue({ data: fakePlan })
+	await act(async () => {
+		const title = await render(<PricingList notification={notification} />)
+		expect(title.getByTestId("pricingcards")).toHaveTextContent("You have no Plans.");	
 	})
-});
-
-test('Render the create button', () => {
-	render(<PricingList />);
-	const button = screen.getByText(/Create/i);
-	expect(button).toBeInTheDocument();
-  });
+	expect(screen.getByTestId("pricingcards")).toHaveTextContent("Fake plan");
+})

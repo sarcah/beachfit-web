@@ -10,17 +10,20 @@ export const BLOG_ACTION = {
 	update: "UPDATE"
 }
 
-export default function Blog({id, notification}) {
+export default function Blog({ id, notification }) {
 	const [blogData, setBlogData] = useState(null);
 
 	useEffect(() => {
+		let mounted = true;
 		axios.get(`${API_URL}/blogs/1/posts/${id}`)
-			.then(response => { setBlogData(response.data) })
+			.then(response => { if (mounted) setBlogData(response.data) })
 			.catch();
+		return () => { mounted = false }
 	}, []);
 
 	return (
-		blogData ? 
-		(<BlogEditor data={blogData} action={BLOG_ACTION.update} notification={notification} />) : null
+		<div data-testid="blogdata">
+			{ blogData ? (<BlogEditor data={blogData} action={BLOG_ACTION.update} notification={notification} />) : <>Loading...</> }
+		</div>
 	);
 }

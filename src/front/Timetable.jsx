@@ -18,7 +18,7 @@ function Timetable({ settings }) {
 								<p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto mb-10">
 									Please e-mail any questions to <a className="hover:underline hover:text-red-800 font-bold" href={`mailto: ${settings && settings.email_address}`}>{settings && settings.email_address}</a>
 								</p>
-								Alternatively call or text on <span className="font-bold">{ settings && settings.phone_number }</span>
+								Alternatively call or text on <span data-testid="phoneNumber" className="font-bold">{ settings && settings.phone_number }</span>
 							</div>
 							<div className="grid min-w-full bg-white">
 								<div className="bg-gray-800 grid grid-cols-3 text-white">
@@ -27,7 +27,7 @@ function Timetable({ settings }) {
 									<div className="text-left py-3 px-4 uppercase font-semibold text-sm">Friday</div>
 								</div>
 								<div className="text-gray-700 grid grid-cols-3 ">
-									<div className="w-full text-left py-3 px-4">6:00 AM - 6:40 AM</div>
+									<div data-testid="mondayTimes" className="w-full text-left py-3 px-4">6:00 AM - 6:40 AM</div>
 									<div className="w-full text-left py-3 px-4">6:00 AM - 6:40 AM</div>
 									<div className="w-full text-left py-3 px-4">6:00 AM - 6:40 AM</div>
 								</div>
@@ -36,7 +36,7 @@ function Timetable({ settings }) {
 									<div className="w-full text-left py-3 px-4">6:45 AM - 7:25 AM</div>
 									<div className="w-full text-left py-3 px-4">6:45 AM - 7:25 AM</div>
 								</div>
-								<div className="text-gray-700 grid grid-cols-1 text-center py-3 pt-12 pb-12 px-4 font-bold leading-8">
+								<div data-testid="sessionTimesWeek" className="text-gray-700 grid grid-cols-1 text-center py-3 pt-12 pb-12 px-4 font-bold leading-8">
 									We run two sessions every Monday, Wednesday and Friday. You can choose one session per day that we train.
 									Sessions run for 40 minutes on Coogee Beach.
 								</div>

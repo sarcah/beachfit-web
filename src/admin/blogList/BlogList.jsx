@@ -20,9 +20,11 @@ export default function BlogList({notification}) {
 	}
 
 	useEffect(() => {
+		let mounted = true;
 		axios.get(`${API_URL}/blogs/1/posts`)
-			.then(response => { setData(response.data) })
+			.then(response => { if (mounted) setData(response.data) })
 			.catch(() => { notification('There was an error in getting blog post data.', 'error') })
+		return () => { mounted = false }
 	}, []);
 
 	const columns = [

@@ -43,8 +43,10 @@ export default function FaqList({notification}) {
 	}
 
 	useEffect(() => {
+		let mounted = true;
 		axios.get(`${API_URL}/faqs/1/items`)
-			.then(response => { setPlans(() => response.data) }).catch();
+			.then(response => { if (mounted) setPlans(() => response.data) }).catch();
+		return () => { mounted = false }
 	}, [newPlan, update])
 
 	return (

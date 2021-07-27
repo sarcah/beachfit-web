@@ -14,11 +14,11 @@ function About({ settings }) {
 		<>
 			<Navbar />
 			<div className="container md:w-4/5 mx-auto text-gray-800 leading-normal mb-64">
-				<div className="flex sm:flex-col text-center justify-center h-full bg-gray-100 rounded shadow-lg pt-8 mx-0 sm:mx-6">
+				<div className="flex flex-col text-center justify-center h-full bg-gray-100 rounded shadow-lg pt-8 mx-0 sm:mx-6">
 					<div className="h-full">
-						<div className="flex p-10">
-							<div className="mr-10">
-								<img className="w-auto h-auto object-cover object-top sm:float-left rounded-lg" src={Yvonne} alt="" />
+						<div className="flex flex-col sm:flex-row sm:p-10">
+							<div className="sm:mr-10">
+								<img className="w-auto h-auto sm:object-cover sm:object-top sm:float-left rounded-lg" src={Yvonne} alt="" />
 							</div>
 							<div className="mb-auto mt-auto max-w-lg">
 								<h1 className="text-3xl uppercase mb-4">Yvonne Dallman</h1>
