@@ -3,7 +3,7 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import Navlink from "./Navlink";
 
-function Navbar() {
+function Navbar({ settings }) {
 	return (
 		<div className="px-4 md:px-0 md:w-4/5 mx-auto -mt-32">
 			<div className="mx-0 sm:mx-6">
@@ -14,10 +14,10 @@ function Navbar() {
 								<Navlink linkTo="/" linkText="Home" />
 								<Navlink linkTo="/about" linkText="About" />
 								<Navlink linkTo="/contact" linkText="Contact" />
-								<Navlink linkTo="/faq" linkText="FAQ" />
+								{settings && settings.faq_show ? <Navlink linkTo="/faq" linkText="FAQ" /> : <></>}
 								<Navlink linkTo="/timetable" linkText="Timetable" />
 								<Navlink linkTo="/pricing" linkText="Pricing" />
-								<Navlink linkTo="/blogs" linkText="Blogs" />
+								{settings && settings.blog_show ? <Navlink linkTo="/blogs" linkText="Blogs" /> : <></>}
 							</ul>
 						</div>
 						<div className="flex w-1/2 justify-end content-center">
@@ -37,4 +37,4 @@ function Navbar() {
 	)
 }
 
-export default Navbar
+export default Navbar;

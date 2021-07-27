@@ -6,20 +6,23 @@ import LeadCard from './components/LeadCard';
 import Testimonials from './components/Testimonials';
 
 
-const Home = () => {
+const Home = ({ settings }) => {
 
 	
 	return (
 		<>
-			<Header />
+			<Header settings={settings} />
 			<div className="container md:w-4/5 mx-auto text-gray-800 leading-normal mb-64">
 				<div className="flex flex-col text-center justify-center h-full bg-white rounded shadow-lg pt-8 mx-0 sm:mx-6">
 					{/*Lead Card*/}
 					<LeadCard />
 
 					{/*Testimonials Container*/}
-					<div className="text-center mt-10 sm:text-3xl text-2xl font-medium title-font text-gray-900 ">Testimonials</div>
-						<Testimonials />
+						{
+							settings && settings.testimonial_show ? <>
+							<div className="text-center mt-10 sm:text-3xl text-2xl font-medium title-font text-gray-900 ">Testimonials</div>
+							<Testimonials /></> : <></>
+						}
 				</div>
 					{/*/ Post Content*/}
 				

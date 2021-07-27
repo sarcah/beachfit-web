@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./pricingcard.css";
 import axios from "axios";
-import { API_URL } from "../../../api/auth.js";
+import { API_URL, responseOK } from "../../../api/auth.js";
 import { PRICING_TYPE } from '../PricingList';
 
 export default function NewPricingCard({ type, data, onCreate, onCancel }) {
@@ -44,7 +44,7 @@ export default function NewPricingCard({ type, data, onCreate, onCancel }) {
 		
 		axios.post(`${API_URL}/pricings/1/${type}`, formData)
 			.then(response => {
-				if (response.status == 201) onCreate(true);
+				if (responseOK(response.status)) onCreate(true);
 				else Promise.reject()
 			})
 			.catch(() => { onCreate(false); })

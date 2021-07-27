@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./topbar.css";
-import { NotificationsNone, Language, Settings } from "@material-ui/icons";
 import { Button } from "@material-ui/core";
 import { signOut } from '../../../api/auth';
+import { Link } from 'react-router-dom';
 
 
 export default function Topbar({notification}) {
@@ -21,12 +21,10 @@ export default function Topbar({notification}) {
 			<div className="topBarWrapper">
 				<img src="https://picsum.photos/200/300" alt="" className="topAvatar" />
 				<div className="topBarLeft">
-					<span className="logo">Admin Page</span>
+					<Link to="/admin" className="logo">Admin Page</Link>
 				</div>
 
 				<div className="topBarRight">
-					
-
 					<Button onClick={handleLogout} variant="contained" color="primary">
 						Logout
 					</Button>

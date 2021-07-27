@@ -4,7 +4,7 @@ import { DataGrid } from '@material-ui/data-grid';
 import { DeleteOutline } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { API_URL } from "../../api/auth.js";
+import { API_URL, responseOK } from "../../api/auth.js";
 
 export default function BlogList({notification}) {
 	const [data, setData] = useState([]);
@@ -13,7 +13,7 @@ export default function BlogList({notification}) {
 		setData(data.filter(item => item.id !== id))
 		axios.delete(`${API_URL}/blogs/1/posts/${id}`)
 			.then(response => {
-				if (response.status >= 200 && response.status <= 300) notification("Blog post deleted successfully.", "success");
+				if (responseOK(response.status)) notification("Blog post deleted successfully.", "success");
 				else Promise.reject();
 			})
 			.catch(() => { notification('There was an error in deleting the blog post.', 'error') });
@@ -21,9 +21,7 @@ export default function BlogList({notification}) {
 
 	useEffect(() => {
 		axios.get(`${API_URL}/blogs/1/posts`)
-			.then(response => {
-				setData(response.data)
-			})
+			.then(response => { setData(response.data) })
 			.catch(() => { notification('There was an error in getting blog post data.', 'error') })
 	}, []);
 

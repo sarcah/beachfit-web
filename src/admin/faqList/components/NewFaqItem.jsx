@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "./faqitem.css";
 import axios from "axios";
-import { API_URL } from "../../../api/auth.js";
+import { API_URL, responseOK } from "../../../api/auth.js";
 
 export default function NewFaqItem({ data, onCreate, onCancel }) {
 
@@ -22,7 +22,7 @@ export default function NewFaqItem({ data, onCreate, onCancel }) {
 		}
 		axios.post(`${API_URL}/faqs/1/items/${target.id.value}`, formData)
 			.then(response => {
-				if (response.status == 201) onCreate(true);
+				if (responseOK(response.status)) onCreate(true);
 				else Promise.reject()
 			})
 			.catch(() => { onCreate(false); })
@@ -45,36 +45,5 @@ export default function NewFaqItem({ data, onCreate, onCancel }) {
 			<br />
 			<button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="submit">Create</button>
 		</form>
-
-
-
-
-		// <form onSubmit={(event) => { handleSubmit(event) }} className="faqItem flex-shrink-0 mb-10">
-		// 	<div className="flex justify-between">
-		// 		<input type="hidden" name="id" value={value.id} />
-		// 		<span className="faqTitle">
-		// 			<input name="name" style={{ width: "70%" }} type="text" value={value.name} onChange={handleChange} />
-
-		// 		</span>
-		// 		<div className="flex justify-end items-end">
-		// 			<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={onCancel}>Cancel</button>
-		// 		</div>
-		// 	</div>
-		// 	<div className="faqMoneyContainer">
-		// 		<span className="faqMoney"><input name="price" type="text" style={{ width: "80px" }} value={value.price} onChange={handleChange} /></span>
-		// 	</div>
-
-		// 	<span className="faqSub">
-		// 		<input name="sessions_per_week" type="text" value={value.sessions_per_week} onChange={handleChange} />
-		// 	</span>
-		// 	<span className="faqSub">
-		// 		<input name="session_times" type="text" value={value.session_times} onChange={handleChange} />
-		// 	</span>
-		// 	<span className="faqSub">
-		// 		<input name="description" type="text" value={value.description} onChange={handleChange} />
-		// 	</span>
-		// 	<br />
-		// 	<button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="submit">Create</button>
-		// </form>
 	)
 }
