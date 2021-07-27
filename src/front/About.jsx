@@ -22,9 +22,9 @@ function About({ settings }) {
 							</div>
 							<div className="mb-auto mt-auto max-w-lg">
 								<h1 className="text-3xl uppercase mb-4">Yvonne Dallman</h1>
+
 								<p className="font-semibold mb-5">Fitness & Well-being Coach</p>
-								<p className="leading-8 mb-10"> {settings && settings.about_text}
-								</p>
+								<p className="leading-8 mb-10"> {settings && settings.about_text}</p>
 								<p className="leading-8 mb-10">Get in touch today if you'd like to find and more and to book your free trial.</p>
 
 								<a href="mailto: info@beachfitandwellbeing.com">
