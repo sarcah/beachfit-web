@@ -16,7 +16,9 @@ function Timetable({ settings }) {
 									Session Timetable
 								</h1>
 								<p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto mb-10">
+
 									Please e-mail any questions to <a className="hover:underline hover:text-red-800 font-bold" href={`mailto: ${settings && settings.email_address}`}>{settings && settings.email_address}</a>
+
 								</p>
 								Alternatively call or text on <span data-testid="phoneNumber" className="font-bold">{ settings && settings.phone_number }</span>
 							</div>
